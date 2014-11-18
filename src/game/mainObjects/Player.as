@@ -61,6 +61,15 @@ package game.mainObjects
 			animations[IDLE_ANIM].visible = true;
 		}
 		
+		private function switchAnim(animInt : int) :void {
+			for (var i : uint = 0; i < animations.length; i++) {
+				animations[i].visible = false;
+				animations[i].gotoAndStop(1);
+			}
+			animations[animInt].visible = true;
+			animations[animInt].play();
+		}
+		
 		private function keyDown(e:KeyboardEvent):void 
 		{
 			if (e.keyCode == Keyboard.LEFT) {
@@ -74,11 +83,6 @@ package game.mainObjects
 				playerAttack();
 			}
 		}
-		
-		private function playerAttack():void 
-		{
-			trace("attack");
-		}
 		private function keyUp(e:KeyboardEvent):void 
 		{
 			if (e.keyCode == Keyboard.LEFT || e.keyCode == Keyboard.RIGHT) {
@@ -87,15 +91,18 @@ package game.mainObjects
 			}
 		}
 		
-		private function switchAnim(animInt : int) :void {
-			for (var i : uint = 0; i < animations.length; i++) {
-				animations[i].visible = false;
-				animations[i].gotoAndStop(1);
-			}
-			animations[animInt].visible = true;
-			animations[animInt].play();
+		private function playerAttack():void 
+		{
+			switchAnim(ATTACK_ANIM);
+			playerShoot();
 		}
 		
+		private function playerShoot():void 
+		{
+			var bullet : Bullet = new Bullet(attackDmg, scaleX);
+			bullet.x = x + width / 2;
+			bullet.y = y + height / 2.5;
+			parent.addChild(bullet);
+		}
 	}
-
 }

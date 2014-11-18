@@ -4,6 +4,7 @@ package screens
 	import flash.events.Event;
 	import flash.geom.Rectangle;
 	import game.mainObjects.Player;
+	import game.mainObjects.Tower;
 	import gameControl.GameController;
 	import placeholderAssets.BackGround;
 	/**
@@ -48,8 +49,14 @@ package screens
 		private function addPlayer():void 
 		{
 			var player : Player = new Player();
+			var tower : Tower = new Tower(2);
+			
 			player.x = stage.stageWidth / 2;
 			player.y = (stage.stageHeight - player.height) - 10;
+			
+			tower.x = player.x;
+			tower.y = player.y;
+			addChild(tower);
 			addChild(player);
 		}
 		private function update(e:Event):void 
