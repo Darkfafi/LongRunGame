@@ -1,4 +1,4 @@
-package placeholderAssets 
+package game 
 {
 	import flash.display.Sprite;
 	import gameControl.GameObject;
@@ -11,6 +11,8 @@ package placeholderAssets
 		
 		public function BackGround() 
 		{
+			collider = false;
+			
 			graphics.beginFill(0x00FFFF, 1);
 			graphics.drawRect(-600, 0, 1200, 600);
 			graphics.endFill();

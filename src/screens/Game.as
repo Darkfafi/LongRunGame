@@ -3,10 +3,10 @@ package screens
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
+	import game.BackGround;
 	import game.mainObjects.Player;
 	import game.mainObjects.Tower;
 	import gameControl.GameController;
-	import placeholderAssets.BackGround;
 	/**
 	 * ...
 	 * @author Ramses di Perna
@@ -49,7 +49,7 @@ package screens
 		private function addPlayer():void 
 		{
 			var player : Player = new Player();
-			var tower : Tower = new Tower(2);
+			var tower : Tower = new Tower(1);
 			
 			player.x = stage.stageWidth / 2;
 			player.y = (stage.stageHeight - player.height) - 10;

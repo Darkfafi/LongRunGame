@@ -32,7 +32,7 @@ package game.mainObjects
 		}
 		
 		private function buildTower():void {
-			totalBricks = 20;
+			totalBricks = bricksPerStage;
 			drawTower();
 		}
 		

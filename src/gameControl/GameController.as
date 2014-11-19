@@ -3,8 +3,8 @@ package gameControl
 	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
+	import game.BackGround;
 	import game.mainObjects.Player;
-	import placeholderAssets.BackGround;
 	/**
 	 * ...
 	 * @author Ramses di Perna
@@ -51,7 +51,6 @@ package gameControl
 		}
 		
 		public function update() :void {
-			collisionSystem.checkCollision(gameObjects,_world, player, background);
 			cameraMovement();
 			var l : int = gameObjects.length;
 			for (var i : int = l - 1; i >= 0; i--) {
@@ -59,6 +58,7 @@ package gameControl
 					gameObjects[i].update();
 				}
 			}
+			collisionSystem.checkCollision(gameObjects,_world, player, background);
 		}
 		
 		private function cameraMovement():void 
