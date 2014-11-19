@@ -7,8 +7,12 @@ package gameControl
 	 */
 	public class GameObject extends Sprite
 	{
+		public var colliding : Boolean = false;
+		public var collidedObject : GameObject;
+		
 		private var removing : Boolean = false;
 		public var collider : Boolean = true;
+		public var interActive : Boolean = false;
 		
 		public function GameObject() 
 		{
@@ -23,7 +27,21 @@ package gameControl
 			return result;
 		}
 		
+		public function onCollisionEnter(other : GameObject):void {
+			colliding = true;
+			collidedObject = other;
+		}
+		
 		public function onCollision(other : GameObject) :void {
+			
+		}
+		
+		public function onCollisionExit(other : GameObject):void {
+			colliding = false;
+			collidedObject = null;
+		}
+		
+		public function onInteraction() :void {
 			
 		}
 		public function removeObject():void {

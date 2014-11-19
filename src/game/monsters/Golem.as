@@ -14,14 +14,18 @@ package game.monsters
 		public function Golem(wave : int, direction:int) 
 		{
 			super(wave, direction);
+			
+			//animations of Golem
 			preAnim = [new PlayerIdlePlaceHolder, new PlayerAttackPlaceHolder, new PlayerMovePlaceHolder];
 		}
 		
 		override protected function setStats(wave : int):void 
 		{
+			//stats of Golem
 			health = 50;
 			attackDmg = 10;
 			_speed = 1;
+			
 			super.setStats(wave);
 		}
 	}

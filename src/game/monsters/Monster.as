@@ -32,6 +32,7 @@ package game.monsters
 		{
 			addEventListener(Event.ADDED_TO_STAGE, init);
 			setStats(wave);
+			//moet berekend worden met waar de tower staat.
 			_dir = direction;
 		}
 		
@@ -108,7 +109,7 @@ package game.monsters
 			tower.damageTower(attackDmg);
 			trace(attackDmg);
 			attacking = true;
-			//als attack animation klaar is. attacking weer terug op false
+			//als attack animation klaar is. attacking weer terug op falsezodat hij weerk kan aanvallen.
 		}
 		
 	}

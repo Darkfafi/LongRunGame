@@ -21,6 +21,7 @@ package game.mainObjects
 		public function Tower(level : int) 
 		{
 			addEventListener(Event.ADDED_TO_STAGE, init);
+			interActive = true;
 			bricksPerStage = level * 10;
 			setMaxBricks(bricksPerStage * 10);
 		}

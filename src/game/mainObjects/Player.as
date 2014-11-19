@@ -85,6 +85,12 @@ package game.mainObjects
 			if ( e.keyCode == Keyboard.Z) {
 				playerAttack();
 			}
+			if (e.keyCode == Keyboard.X) {
+				if (collidedObject && collidedObject.interActive) {
+					trace("use");
+					collidedObject.onInteraction();
+				}
+			}
 		}
 		private function keyUp(e:KeyboardEvent):void 
 		{
@@ -93,7 +99,6 @@ package game.mainObjects
 				switchAnim(IDLE_ANIM);
 			}
 		}
-		
 		private function playerAttack():void 
 		{
 			//if(animations[ATTACK_ANIM].currentFrame == animations[ATTACK_ANIM].totalFrames){

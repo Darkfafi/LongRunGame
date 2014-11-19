@@ -49,7 +49,15 @@ package gameControl
 				player = e.target as Player;
 			}
 		}
-		
+		public function lisOfObjectType(object : GameObject) :Array {
+			var list : Array = [];
+			for (var i : int = 0; i < gameObjects.length; i++) {
+				if (gameObjects[i] == object) {
+					list.push(gameObjects[i]);
+				}
+			}
+			return list;
+		}
 		public function update() :void {
 			collisionSystem.checkCollision(gameObjects,_world, player, background);
 			cameraMovement();

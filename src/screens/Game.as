@@ -46,7 +46,6 @@ package screens
 			backGround = new BackGround();
 			backGround.x = backGround.width / 3;
 			addChild(backGround);
-			
 		}
 		private function addPlayer():void 
 		{

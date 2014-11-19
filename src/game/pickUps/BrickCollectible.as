@@ -2,12 +2,15 @@ package game.pickUps
 {
 	import flash.display.Sprite;
 	import gameControl.GameObject;
+	import flash.utils.setInterval;
 	/**
 	 * ...
 	 * @author Ramses di Perna
 	 */
 	public class BrickCollectible extends GameObject
 	{
+		private var destroyTime : int = 3000;
+		
 		private var art : Sprite = new Sprite();
 		
 		public function BrickCollectible() 
@@ -21,6 +24,9 @@ package game.pickUps
 			art.graphics.drawRect(0, 0, 10, 5);
 			art.graphics.endFill();
 			addChild(art);
+			
+			//removes brick when it has been alive for to long.
+			setInterval(removeObject, destroyTime);
 		}
 		
 	}
