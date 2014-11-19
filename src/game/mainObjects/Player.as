@@ -26,7 +26,7 @@ package game.mainObjects
 		
 		//stats
 		private var attackDmg : int;
-		private var bricksCarrying : int;
+		public var bricksCarrying : int;
 		private var brickCapacity : int;
 		
 		public function Player() 
@@ -86,9 +86,10 @@ package game.mainObjects
 				playerAttack();
 			}
 			if (e.keyCode == Keyboard.X) {
+				trace(colliding +" "+ collidedObject)
 				if (collidedObject && collidedObject.interActive) {
 					trace("use");
-					collidedObject.onInteraction();
+					collidedObject.onInteraction(this);
 				}
 			}
 		}
@@ -122,7 +123,11 @@ package game.mainObjects
 					other.removeObject();
 					bricksCarrying ++;
 				}
-			}
+			}	
+		}
+		override public function onCollisionExit(other:GameObject):void 
+		{
+			super.onCollisionExit(other);
 		}
 	}
 }

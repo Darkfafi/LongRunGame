@@ -29,11 +29,10 @@ package gameControl
 		
 		public function onCollisionEnter(other : GameObject):void {
 			colliding = true;
-			collidedObject = other;
 		}
 		
 		public function onCollision(other : GameObject) :void {
-			
+			collidedObject = other;
 		}
 		
 		public function onCollisionExit(other : GameObject):void {
@@ -41,7 +40,7 @@ package gameControl
 			collidedObject = null;
 		}
 		
-		public function onInteraction() :void {
+		public function onInteraction(InteractingObject : GameObject) :void {
 			
 		}
 		public function removeObject():void {

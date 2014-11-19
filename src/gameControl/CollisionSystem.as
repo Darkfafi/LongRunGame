@@ -31,7 +31,8 @@ package gameControl
 									currentObj.onCollisionEnter(other);
 								}else if (currentObj.willCollide(other)) {
 									currentObj.onCollision(other);
-								}else if(currentObj.colliding && currentObj.collidedObject == other) {
+								}else if (currentObj.colliding && currentObj.collidedObject == other) {
+									
 									currentObj.onCollisionExit(other);
 								}
 							}

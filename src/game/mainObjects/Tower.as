@@ -42,6 +42,7 @@ package game.mainObjects
 		}
 		
 		public function addBricks(amount : int) :void {
+			trace(amount);
 			for (var i : int = 0; i < amount; i++) {
 				totalBricks += 1;
 				if (totalBricks % bricksPerStage == 0) {
@@ -83,6 +84,14 @@ package game.mainObjects
 					tile.y = i * -tile.height;
 					addChild(tile);
 				}
+			}
+		}
+		override public function onInteraction(InteractingObject : GameObject):void 
+		{
+			super.onInteraction(InteractingObject);
+			if (InteractingObject is Player) {
+				var player : Player = InteractingObject as Player;
+				addBricks(player.bricksCarrying);
 			}
 		}
 	}
