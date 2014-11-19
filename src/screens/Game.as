@@ -6,6 +6,8 @@ package screens
 	import game.BackGround;
 	import game.mainObjects.Player;
 	import game.mainObjects.Tower;
+	import game.monsters.Golem;
+	import game.monsters.Monster;
 	import gameControl.GameController;
 	/**
 	 * ...
@@ -50,12 +52,17 @@ package screens
 		{
 			var player : Player = new Player();
 			var tower : Tower = new Tower(1);
-			
+			//Test!
+			var monster : Monster = new Golem(1,-1);
+			addChild(monster);
+			monster.x = backGround.width;
+			monster.y = (stage.stageHeight - monster.height) - 10
+			//----------------------
 			player.x = stage.stageWidth / 2;
 			player.y = (stage.stageHeight - player.height) - 10;
 			
 			tower.x = player.x;
-			tower.y = player.y;
+			tower.y = player.y - 10;
 			addChild(tower);
 			addChild(player);
 		}

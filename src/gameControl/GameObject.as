@@ -7,6 +7,7 @@ package gameControl
 	 */
 	public class GameObject extends Sprite
 	{
+		private var removing : Boolean = false;
 		public var collider : Boolean = true;
 		
 		public function GameObject() 
@@ -22,8 +23,15 @@ package gameControl
 			return result;
 		}
 		
-		public function onCollide(other : GameObject) :void {
+		public function onCollision(other : GameObject) :void {
 			
+		}
+		public function removeObject():void {
+			if (!removing) {
+				removing = true;
+				collider = false;
+				parent.removeChild(this);
+			}
 		}
 	}
 

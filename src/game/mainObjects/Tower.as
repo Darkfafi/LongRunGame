@@ -32,7 +32,7 @@ package game.mainObjects
 		}
 		
 		private function buildTower():void {
-			totalBricks = bricksPerStage;
+			totalBricks = 40;
 			drawTower();
 		}
 		
@@ -56,27 +56,32 @@ package game.mainObjects
 		private function addLayer():void {
 			drawTower();
 		}
-		private function damageTower(dmg : int) :void {
+		public function damageTower(dmg : int) :void {
 			totalBricks -= dmg;
+			//break sound
 			drawTower();
 		}
 		private function drawTower() :void {
-			for (var i : int = 0; i < tiles.length; i++) {
-				removeChild(tiles[i]);
-				tiles.splice(i, 1);
-			}
 			var tilesToDraw : int = totalBricks / bricksPerStage;
-			
-			for (i = 0; i < tilesToDraw; i++) {
-				var tile : Sprite;
-				if (i == 0) {
-					tile = new GroundTowerPlaceHolder();
-				}else {
-					tile = new TowerPlaceHolderTile();
+			var l : int = tiles.length;
+			trace(tilesToDraw +" "+ l);
+			if(tilesToDraw <= l){
+				for (var i : int = l - 1; i >= tilesToDraw; i--) {
+					removeChild(tiles[i]);
+					tiles.splice(i, 1);
 				}
-				tiles.push(tile);
-				tile.y = i * -tile.height;
-				addChild(tile);
+			}else{
+				for (i = l; i < tilesToDraw; i++) {
+					var tile : Sprite;
+					if (i == 0) {
+						tile = new GroundTowerPlaceHolder();
+					}else {
+						tile = new TowerPlaceHolderTile();
+					}
+					tiles.push(tile);
+					tile.y = i * -tile.height;
+					addChild(tile);
+				}
 			}
 		}
 	}

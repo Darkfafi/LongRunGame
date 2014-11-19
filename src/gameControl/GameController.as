@@ -51,14 +51,15 @@ package gameControl
 		}
 		
 		public function update() :void {
+			collisionSystem.checkCollision(gameObjects,_world, player, background);
 			cameraMovement();
 			var l : int = gameObjects.length;
 			for (var i : int = l - 1; i >= 0; i--) {
 				if (gameObjects[i] is MovingGameObject) {
-					gameObjects[i].update();
+					var object : MovingGameObject = gameObjects[i] as MovingGameObject;
+					object.update();
 				}
 			}
-			collisionSystem.checkCollision(gameObjects,_world, player, background);
 		}
 		
 		private function cameraMovement():void 

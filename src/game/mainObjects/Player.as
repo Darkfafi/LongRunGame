@@ -4,6 +4,8 @@ package game.mainObjects
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
+	import game.pickUps.BrickCollectible;
+	import gameControl.GameObject;
 	import gameControl.MovingGameObject;
 	import placeholderAssets.PlayerAttackPlaceHolder;
 	import placeholderAssets.PlayerIdlePlaceHolder;
@@ -24,6 +26,7 @@ package game.mainObjects
 		
 		//stats
 		private var attackDmg : int;
+		private var bricksCarrying : int;
 		private var brickCapacity : int;
 		
 		public function Player() 
@@ -93,6 +96,7 @@ package game.mainObjects
 		
 		private function playerAttack():void 
 		{
+			//if(animations[ATTACK_ANIM].currentFrame == animations[ATTACK_ANIM].totalFrames){
 			switchAnim(ATTACK_ANIM);
 			playerShoot();
 		}
@@ -103,6 +107,17 @@ package game.mainObjects
 			bullet.x = x + width / 2;
 			bullet.y = y + height / 2.5;
 			parent.addChild(bullet);
+		}
+		
+		override public function onCollision(other:GameObject):void 
+		{
+			super.onCollision(other);
+			if (other is BrickCollectible) {
+				if(bricksCarrying < brickCapacity){
+					other.removeObject();
+					bricksCarrying ++;
+				}
+			}
 		}
 	}
 }

@@ -1,6 +1,8 @@
 package game.mainObjects 
 {
 	import flash.display.Sprite;
+	import game.monsters.Monster;
+	import gameControl.GameObject;
 	import gameControl.MovingGameObject;
 	/**
 	 * ...
@@ -11,13 +13,12 @@ package game.mainObjects
 		private var currentDropSpeed : Number = 0;
 		private var fallSpeed : Number = 0;
 		private var bulletArt : Sprite = new Sprite();
-		
-		private var _bulletDmg : int;
+		private var bulletDmg : int;
 		
 		public function Bullet(bulletDamage : int, direction : int) 
 		{
 			_speed = 18;
-			_bulletDmg = bulletDamage;
+			bulletDmg = bulletDamage;
 			_dir = direction;
 			
 			drawBullet();
@@ -37,10 +38,15 @@ package game.mainObjects
 			bulletArt.graphics.endFill();
 			addChild(bulletArt);
 		}
-		
-		public function get bulletDmg():int 
+		override public function onCollision(other:GameObject):void 
 		{
-			return _bulletDmg;
+			super.onCollision(other);
+			if (other is Monster) {
+				var monster : Monster = other as Monster;
+				monster.getDamage(bulletDmg);
+				//impact
+				removeObject();
+			}
 		}
 		
 	}

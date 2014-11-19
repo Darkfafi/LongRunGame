@@ -10,7 +10,7 @@ package placeholderAssets.towerTiles
 		
 		public function GroundTowerPlaceHolder() 
 		{
-			graphics.beginFill(0x696969, 1);
+			graphics.beginFill(0x896989, 1);
 			graphics.drawRect(0, 0, 50, 30);
 			graphics.endFill();
 		}

@@ -24,9 +24,9 @@ package gameControl
 					for (var j : int = l - 1; j >= 0; j--) {
 						var other : GameObject = listObjects[j] as GameObject;
 						if(other){
-							if(other.collider){
+							if(other.collider && other != listObjects[i]){
 								if (currentObj.willCollide(other)) {
-									currentObj.onCollide(other);
+									currentObj.onCollision(other);
 								}
 							}
 						}
