@@ -30,6 +30,10 @@ package game.mainObjects
 			
 			fallSpeed += currentDropSpeed;
 			y += fallSpeed;
+			
+			if (y > parent.stage.stageHeight) {
+				removeObject();
+			}
 		}
 		private function drawBullet():void 
 		{
