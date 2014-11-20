@@ -85,8 +85,8 @@ package screens
 		private function addPlayer():void 
 		{	
 			player.x = stage.stageWidth / 2;
-			player.y = (stage.stageHeight - player.height) - 10;
-			
+			player.y = (stage.stageHeight - player.height / 2);
+			player.rotationY = 180;
 			addChild(player);
 		}
 		private function update(e:Event):void 

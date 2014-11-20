@@ -60,11 +60,16 @@ package game.mainObjects
 		}
 		public function damageTower(dmg : int) :void {
 			totalBricks -= dmg;
+			if (totalBricks <= 0) {
+				totalBricks = 0
+				trace("GAME LOST");
+			}
 			//break sound
 			drawTower();
 		}
 		private function drawTower() :void {
 			var tilesToDraw : int = totalBricks / bricksPerStage;
+			trace(tilesToDraw);
 			var l : int = tiles.length;
 			if(tilesToDraw <= l){
 				for (var i : int = l - 1; i >= tilesToDraw; i--) {

@@ -24,6 +24,8 @@ package game.mainObjects
 		
 		private var animations : Array = [];
 		
+		private var canShoot : Boolean = true;
+		
 		//stats
 		private var attackDmg : int;
 		public var bricksCarrying : int;
@@ -48,12 +50,12 @@ package game.mainObjects
 		private function setDefaultStats():void 
 		{
 			_speed = 5;
-			attackDmg = 10;
+			attackDmg = 25;
 			brickCapacity = 10;
 		}
 		private function drawPlayer():void 
 		{
-			var preAnim : Array = [new PlayerIdlePlaceHolder, new PlayerMovePlaceHolder, new PlayerAttackPlaceHolder];
+			var preAnim : Array = [new PlayerIdlePlaceHolder, new PlayerMovePlaceHolder, new KnightShoot];
 			for (var i : uint = 0; i < preAnim.length; i++) {
 				var anim : MovieClip = preAnim[i];
 				anim.visible = false;
@@ -67,28 +69,35 @@ package game.mainObjects
 		private function switchAnim(animInt : int) :void {
 			for (var i : uint = 0; i < animations.length; i++) {
 				animations[i].visible = false;
-				animations[i].gotoAndStop(1);
+				animations[i].stop();
 			}
 			animations[animInt].visible = true;
 			animations[animInt].play();
 		}
+		override public function update():void 
+		{
+			super.update();
+			animCheck();
+		}
 		
+		private function animCheck():void 
+		{
+			if (animations[ATTACK_ANIM].currentFrame == animations[ATTACK_ANIM].totalFrames) {
+				canShoot = true;
+			}
+		}
 		private function keyDown(e:KeyboardEvent):void 
 		{
 			if (e.keyCode == Keyboard.LEFT) {
 				_dir = -1;
-				switchAnim(MOVEMENT_ANIM);
 			}else if (e.keyCode == Keyboard.RIGHT) {
 				_dir = 1;
-				switchAnim(MOVEMENT_ANIM);
 			}
 			if ( e.keyCode == Keyboard.Z) {
 				playerAttack();
 			}
 			if (e.keyCode == Keyboard.X) {
-				trace(colliding +" "+ collidedObject)
 				if (collidedObject && collidedObject.interActive) {
-					trace("use");
 					collidedObject.onInteraction(this);
 				}
 			}
@@ -97,22 +106,35 @@ package game.mainObjects
 		{
 			if (e.keyCode == Keyboard.LEFT || e.keyCode == Keyboard.RIGHT) {
 				_dir = 0;
-				switchAnim(IDLE_ANIM);
+			}
+		}
+		override public function movement():void 
+		{
+			if(canShoot){
+				super.movement();
+				if (dir == -1 || dir == 1 && animations[MOVEMENT_ANIM].visible == false) {
+					switchAnim(MOVEMENT_ANIM);
+				}else if (dir == 0 && animations[IDLE_ANIM].visible == false) {
+					switchAnim(IDLE_ANIM);
+				}
 			}
 		}
 		private function playerAttack():void 
 		{
-			//if(animations[ATTACK_ANIM].currentFrame == animations[ATTACK_ANIM].totalFrames){
-			switchAnim(ATTACK_ANIM);
-			playerShoot();
+			if (canShoot) {
+				canShoot = false;
+				switchAnim(ATTACK_ANIM);
+				playerShoot();
+			}
 		}
-		
 		private function playerShoot():void 
 		{
 			var bullet : Bullet = new Bullet(attackDmg, scaleX);
 			bullet.x = x + width / 2;
-			bullet.y = y + height / 2.5;
+			bullet.y = y;
 			parent.addChild(bullet);
+			
+			this.x += scaleX * -1;
 		}
 		
 		override public function onCollision(other:GameObject):void 
@@ -124,10 +146,6 @@ package game.mainObjects
 					bricksCarrying ++;
 				}
 			}	
-		}
-		override public function onCollisionExit(other:GameObject):void 
-		{
-			super.onCollisionExit(other);
 		}
 	}
 }

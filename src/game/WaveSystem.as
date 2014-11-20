@@ -39,7 +39,6 @@ package game
 		private function objectRemoved(e:Event):void 
 		{
 			var enemiesLeft : int = _game.gameController.lisOfObjectType(Monster).length;
-			trace(enemiesLeft);
 			if (enemiesLeft == 0) {
 				startNextWave();
 			}

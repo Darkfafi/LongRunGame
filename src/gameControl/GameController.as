@@ -41,7 +41,6 @@ package gameControl
 			if (e.target is GameObject) {
 				var object : GameObject = e.target as GameObject;
 				gameObjects.push(object);
-				trace(e.target);
 			}
 			
 			if (e.target is BackGround) {
