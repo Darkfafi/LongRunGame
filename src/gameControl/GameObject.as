@@ -1,12 +1,16 @@
 package gameControl 
 {
 	import flash.display.Sprite;
+	import flash.events.Event;
 	/**
 	 * ...
 	 * @author Ramses di Perna
 	 */
 	public class GameObject extends Sprite
 	{
+		public static const ADDED : String = "added";
+		public static const REMOVED : String = "removed";
+		
 		public var colliding : Boolean = false;
 		public var collidedObject : GameObject;
 		
@@ -16,7 +20,13 @@ package gameControl
 		
 		public function GameObject() 
 		{
-			
+			addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		private function init(e:Event):void 
+		{
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+			parent.dispatchEvent(new Event(ADDED));
 		}
 		
 		public function willCollide(other : GameObject) : Boolean {
@@ -47,6 +57,7 @@ package gameControl
 			if (!removing) {
 				removing = true;
 				collider = false;
+				parent.dispatchEvent(new Event(REMOVED));
 				parent.removeChild(this);
 			}
 		}

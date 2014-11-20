@@ -8,6 +8,7 @@ package screens
 	import game.mainObjects.Tower;
 	import game.monsters.Golem;
 	import game.monsters.Monster;
+	import game.WaveSystem;
 	import gameControl.GameController;
 	/**
 	 * ...
@@ -15,12 +16,18 @@ package screens
 	 */
 	public class Game extends Screen
 	{
+		private var _level : int = 1;
+		
 		//stage objects
 		private var camera : Rectangle;
-		private var gameController : GameController;
+		public var gameController : GameController;
 		private var gameRunning : Boolean = true;
+		private var waveSystem : WaveSystem;
 		
 		private var backGround : Sprite;
+		//
+		private var player : Player = new Player();
+		private var tower : Tower = new Tower(0);
 		
 		public function Game() 
 		{
@@ -30,8 +37,12 @@ package screens
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			
 			addEventListener(Event.ENTER_FRAME, update);
+			
 			gameController = new GameController(this);
+			waveSystem = new WaveSystem(this);
+			
 			beginGame();
 			
 		}
@@ -39,7 +50,31 @@ package screens
 		private function beginGame():void 
 		{
 			addBackground();
+			buildTower();
 			addPlayer();
+			
+			waveSystem.spawnWave();
+		}
+		private function nextLevel() :void {
+			_level ++;
+			
+			waveSystem.setWave(1);
+			buildTower();
+			player.x = stage.stageWidth / 2;
+			player.y = (stage.stageHeight - player.height) - 10;
+		}
+		private function buildTower():void 
+		{
+			if (contains(tower)) {
+				tower.removeObject();
+				tower = null;
+			}
+			tower = new Tower(level);
+			
+			tower.x = stage.stageWidth / 2;
+			tower.y = (stage.stageHeight - tower.height) - 50;
+			
+			addChild(tower);
 		}
 		private function addBackground():void 
 		{
@@ -48,21 +83,10 @@ package screens
 			addChild(backGround);
 		}
 		private function addPlayer():void 
-		{
-			var player : Player = new Player();
-			var tower : Tower = new Tower(1);
-			//Test!
-			var monster : Monster = new Golem(1,-1);
-			addChild(monster);
-			monster.x = backGround.width;
-			monster.y = (stage.stageHeight - monster.height) - 10
-			//----------------------
+		{	
 			player.x = stage.stageWidth / 2;
 			player.y = (stage.stageHeight - player.height) - 10;
 			
-			tower.x = player.x;
-			tower.y = player.y - 10;
-			addChild(tower);
 			addChild(player);
 		}
 		private function update(e:Event):void 
@@ -70,6 +94,11 @@ package screens
 			if (gameRunning) {
 				gameController.update();
 			}
+		}
+		
+		public function get level():int 
+		{
+			return _level;
 		}
 	}
 

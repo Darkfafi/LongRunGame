@@ -47,7 +47,7 @@ package game.mainObjects
 		
 		private function setDefaultStats():void 
 		{
-			_speed = 3;
+			_speed = 5;
 			attackDmg = 10;
 			brickCapacity = 10;
 		}

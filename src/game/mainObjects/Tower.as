@@ -33,7 +33,7 @@ package game.mainObjects
 		}
 		
 		private function buildTower():void {
-			totalBricks = 40;
+			totalBricks = bricksPerStage;
 			drawTower();
 		}
 		
@@ -66,7 +66,6 @@ package game.mainObjects
 		private function drawTower() :void {
 			var tilesToDraw : int = totalBricks / bricksPerStage;
 			var l : int = tiles.length;
-			trace(tilesToDraw +" "+ l);
 			if(tilesToDraw <= l){
 				for (var i : int = l - 1; i >= tilesToDraw; i--) {
 					removeChild(tiles[i]);
@@ -92,6 +91,7 @@ package game.mainObjects
 			if (InteractingObject is Player) {
 				var player : Player = InteractingObject as Player;
 				addBricks(player.bricksCarrying);
+				player.bricksCarrying = 0;
 			}
 		}
 	}

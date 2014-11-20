@@ -15,7 +15,7 @@ package gameControl
 		
 		private var camera : Rectangle;
 		private var player : Player;
-		private var background : BackGround;
+		public var background : BackGround;
 		
 		private var _world : DisplayObjectContainer;
 		private var gameObjects : Array = [];
@@ -23,8 +23,8 @@ package gameControl
 		public function GameController(world : DisplayObjectContainer) 
 		{
 			_world = world;
-			_world.addEventListener(Event.ADDED_TO_STAGE, objectAdded, true);
-			_world.addEventListener(Event.REMOVED_FROM_STAGE, objectRemoved, true);
+			_world.addEventListener(GameObject.ADDED, objectAdded);
+			_world.addEventListener(GameObject.REMOVED, objectRemoved);
 		}
 		
 		private function objectRemoved(e:Event):void 
@@ -41,7 +41,9 @@ package gameControl
 			if (e.target is GameObject) {
 				var object : GameObject = e.target as GameObject;
 				gameObjects.push(object);
+				trace(e.target);
 			}
+			
 			if (e.target is BackGround) {
 				background = e.target  as BackGround;
 			}
@@ -49,10 +51,10 @@ package gameControl
 				player = e.target as Player;
 			}
 		}
-		public function lisOfObjectType(object : GameObject) :Array {
+		public function lisOfObjectType(object : Class) :Array {
 			var list : Array = [];
-			for (var i : int = 0; i < gameObjects.length; i++) {
-				if (gameObjects[i] == object) {
+			for (var i : int =  gameObjects.length - 1; i >= 0; i--) {
+				if (gameObjects[i] is object) {
 					list.push(gameObjects[i]);
 				}
 			}
@@ -69,7 +71,6 @@ package gameControl
 				}
 			}
 		}
-		
 		private function cameraMovement():void 
 		{
 			var check : Rectangle = new Rectangle(player.x - _world.stage.stageWidth / 2,0,_world.stage.stageWidth, _world.stage.stageHeight);
