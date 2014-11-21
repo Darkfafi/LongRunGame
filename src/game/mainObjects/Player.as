@@ -29,7 +29,7 @@ package game.mainObjects
 		//stats
 		private var attackDmg : int;
 		public var bricksCarrying : int;
-		private var brickCapacity : int;
+		public var brickCapacity : int;
 		
 		public function Player() 
 		{
@@ -50,7 +50,7 @@ package game.mainObjects
 		private function setDefaultStats():void 
 		{
 			_speed = 5;
-			attackDmg = 25;
+			attackDmg = 15;
 			brickCapacity = 10;
 		}
 		private function drawPlayer():void 
@@ -69,7 +69,7 @@ package game.mainObjects
 		private function switchAnim(animInt : int) :void {
 			for (var i : uint = 0; i < animations.length; i++) {
 				animations[i].visible = false;
-				animations[i].stop();
+				animations[i].gotoAndStop(1);
 			}
 			animations[animInt].visible = true;
 			animations[animInt].play();

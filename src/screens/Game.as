@@ -8,6 +8,7 @@ package screens
 	import game.mainObjects.Tower;
 	import game.monsters.Golem;
 	import game.monsters.Monster;
+	import game.UI;
 	import game.WaveSystem;
 	import gameControl.GameController;
 	/**
@@ -20,11 +21,12 @@ package screens
 		
 		//stage objects
 		private var camera : Rectangle;
+		private var ui : UI;
 		public var gameController : GameController;
 		private var gameRunning : Boolean = true;
 		private var waveSystem : WaveSystem;
 		
-		private var backGround : Sprite;
+		public var backGround : Sprite;
 		//
 		private var player : Player = new Player();
 		private var tower : Tower = new Tower(0);
@@ -39,9 +41,10 @@ package screens
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
 			addEventListener(Event.ENTER_FRAME, update);
-			
+			addEventListener(Tower.GAME_WON, nextLevel);
 			gameController = new GameController(this);
 			waveSystem = new WaveSystem(this);
+			ui = new UI(gameController);
 			
 			beginGame();
 			
@@ -52,16 +55,16 @@ package screens
 			addBackground();
 			buildTower();
 			addPlayer();
-			
-			waveSystem.spawnWave();
+			addChild(ui);
+			waveSystem.setWave(1);
 		}
-		private function nextLevel() :void {
+		private function nextLevel(e : Event) :void {
 			_level ++;
-			
 			waveSystem.setWave(1);
 			buildTower();
 			player.x = stage.stageWidth / 2;
-			player.y = (stage.stageHeight - player.height) - 10;
+			player.y = (stage.stageHeight - player.height / 2);
+			addChild(player);
 		}
 		private function buildTower():void 
 		{
@@ -72,7 +75,7 @@ package screens
 			tower = new Tower(level);
 			
 			tower.x = stage.stageWidth / 2;
-			tower.y = (stage.stageHeight - tower.height) - 50;
+			tower.y = (stage.stageHeight - tower.height) - 30;
 			
 			addChild(tower);
 		}
@@ -93,6 +96,7 @@ package screens
 		{
 			if (gameRunning) {
 				gameController.update();
+				ui.update();
 			}
 		}
 		

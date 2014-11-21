@@ -78,5 +78,9 @@ package gameControl
 				_world.root.scrollRect = camera;
 			}
 		}
+		
+		public function getAllObjects() :Array {
+			return gameObjects;
+		}
 	}
 }

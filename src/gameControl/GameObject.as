@@ -11,10 +11,14 @@ package gameControl
 		public static const ADDED : String = "added";
 		public static const REMOVED : String = "removed";
 		
+		public var info : int;
+		
 		public var colliding : Boolean = false;
 		public var collidedObject : GameObject;
 		
 		private var removing : Boolean = false;
+		
+		//tags
 		public var collider : Boolean = true;
 		public var interActive : Boolean = false;
 		

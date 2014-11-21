@@ -22,7 +22,7 @@ package gameControl
 			for (var i : int = l - 1; i >= 0; i--) {
 				//collision system
 				var currentObj : GameObject = listObjects[i] as GameObject;
-				if(currentObj){
+				if(currentObj && currentObj.collider){
 					for (var j : int = l - 1; j >= 0; j--) {
 						var other : GameObject = listObjects[j] as GameObject;
 						if(other){
@@ -32,7 +32,6 @@ package gameControl
 								}else if (currentObj.willCollide(other)) {
 									currentObj.onCollision(other);
 								}else if (currentObj.colliding && currentObj.collidedObject == other) {
-									
 									currentObj.onCollisionExit(other);
 								}
 							}

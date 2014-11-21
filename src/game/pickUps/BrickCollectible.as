@@ -9,7 +9,7 @@ package game.pickUps
 	 */
 	public class BrickCollectible extends GameObject
 	{
-		private var destroyTime : int = 3000;
+		private var destroyTime : int = 5000;
 		
 		private var art : Sprite = new Sprite();
 		

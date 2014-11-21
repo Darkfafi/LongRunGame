@@ -18,13 +18,12 @@ package game.monsters
 			//animations of Golem
 			preAnim = [new PlayerIdlePlaceHolder, new PlayerAttackPlaceHolder, new PlayerMovePlaceHolder];
 		}
-		
 		override protected function setStats(wave : int):void 
 		{
 			//stats of Golem
-			health = 50;
-			attackDmg = 10;
-			_speed = 1;
+			health = 35;
+			attackDmg = 5;
+			_speed = 0.5;
 			
 			super.setStats(wave);
 		}

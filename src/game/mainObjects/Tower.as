@@ -3,6 +3,7 @@ package game.mainObjects
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import gameControl.GameObject;
+	import gameControl.HudTextField;
 	import placeholderAssets.towerTiles.GroundTowerPlaceHolder;
 	import placeholderAssets.towerTiles.TowerPlaceHolderTile;
 	
@@ -12,11 +13,13 @@ package game.mainObjects
 	 */
 	public class Tower extends GameObject 
 	{
+		public static const GAME_WON : String = "gameWon";
+		public static const GAME_LOST : String = "gameLost";
 		
 		private var tiles : Array = [];
-		private var maxBricks : int;
+		public var maxBricks : int;
 		private var bricksPerStage : int;
-		private var totalBricks : int;
+		public var totalBricks : int;
 		
 		public function Tower(level : int) 
 		{
@@ -36,13 +39,12 @@ package game.mainObjects
 			totalBricks = bricksPerStage;
 			drawTower();
 		}
-		
 		public function setMaxBricks(_bricks : int) :void {
 			maxBricks = _bricks;
 		}
 		
 		public function addBricks(amount : int) :void {
-			trace(amount);
+			
 			for (var i : int = 0; i < amount; i++) {
 				totalBricks += 1;
 				if (totalBricks % bricksPerStage == 0) {
@@ -52,7 +54,7 @@ package game.mainObjects
 			}
 			if (totalBricks >= maxBricks) {
 				totalBricks = maxBricks;
-				trace("GAME WON! END GAME");
+				parent.dispatchEvent(new Event(GAME_WON));
 			}
 		}
 		private function addLayer():void {

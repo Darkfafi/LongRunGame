@@ -14,7 +14,7 @@ package game
 			collider = false;
 			
 			graphics.beginFill(0x00FFFF, 1);
-			graphics.drawRect(-600, 0, 1200, 600);
+			graphics.drawRect(-700, 0, 1400, 600);
 			graphics.endFill();
 			
 			graphics.beginFill(0xff0000, 1);
@@ -23,7 +23,7 @@ package game
 			graphics.endFill();
 			
 			graphics.beginFill(0x656545, 1);
-			graphics.drawRect( -600, 550, 1200, 50);
+			graphics.drawRect( -700, 550, 1400, 50);
 			graphics.endFill();
 		}
 		
