@@ -6,6 +6,7 @@ package game.monsters
 	import game.pickUps.BrickCollectible;
 	import gameControl.GameObject;
 	import gameControl.MovingGameObject;
+	import game.monsters.HpBar;
 	/**
 	 * ...
 	 * @author Ramses di Perna
@@ -25,6 +26,7 @@ package game.monsters
 		protected var attacking : Boolean = false;
 		
 		//stats
+		protected var hpBar : HpBar;
 		protected var health : int;
 		protected var attackDmg : int;
 		protected var bricksToDrop : int;
@@ -42,6 +44,7 @@ package game.monsters
 			health += wave * health / 5;
 			attackDmg += wave * attackDmg / 5;
 			bricksToDrop = Math.floor(Math.random() * attackDmg / 4) + 2;
+			hpBar = new HpBar(health);
 		}
 		
 		private function init(e:Event):void 
@@ -60,6 +63,16 @@ package game.monsters
 				animations.push(anim);
 			}
 			animations[MOVEMENT_ANIM].visible = true;
+			
+			//place HealthBar
+			hpBar.x -= width / 2;
+			hpBar.y = y - height;
+			
+			addChild(hpBar);
+			if (dir == -1) {
+				hpBar.x += this.width;
+				hpBar.scaleX *= -1;
+			}
 		}
 		
 		protected function switchAnim(animInt : int) :void {
@@ -70,8 +83,12 @@ package game.monsters
 			animations[animInt].visible = true;
 			animations[animInt].play();
 		}
+		
 		public function getDamage(dmg : int) :void {
 			health -= dmg;
+			
+			hpBar.scaleBar(health);
+			
 			this.x += scaleX * -1 * (dmg * 0.1);
 			if (health <= 0) {
 				health = 0;
