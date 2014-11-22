@@ -27,7 +27,7 @@ package game.mainObjects
 		private var canShoot : Boolean = true;
 		
 		//stats
-		private var attackDmg : int;
+		public var attackDmg : int;
 		public var bricksCarrying : int;
 		public var brickCapacity : int;
 		
@@ -130,7 +130,7 @@ package game.mainObjects
 		private function playerShoot():void 
 		{
 			var bullet : Bullet = new Bullet(attackDmg, scaleX);
-			bullet.x = x + width / 2;
+			bullet.x = x + width / 3 * scaleX;
 			bullet.y = y;
 			parent.addChild(bullet);
 			

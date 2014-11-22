@@ -3,6 +3,7 @@ package game
 	import events.HudEvent;
 	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
+	import game.mainObjects.Tower;
 	import game.monsters.Golem;
 	import game.monsters.Monster;
 	import gameControl.GameController;
@@ -18,13 +19,20 @@ package game
 		private var _game : Game;
 		private var world : DisplayObjectContainer;
 		private var _wave : int;
+		private var canSpawn : Boolean = true;
 		
 		public function WaveSystem(_world : DisplayObjectContainer) 
 		{
 			world = _world;
 			_game = world as Game;
 			
-			world.addEventListener(Event.REMOVED_FROM_STAGE, objectRemoved,true);
+			world.addEventListener(Event.REMOVED_FROM_STAGE, objectRemoved, true);
+			world.addEventListener(Tower.GAME_WON, dontSpawn);
+		}
+		
+		private function dontSpawn(e:Event):void 
+		{
+			canSpawn = false;
 		}
 		
 		public function setWave(waveInt : int):void 
@@ -46,8 +54,11 @@ package game
 		{
 			var enemiesLeft : int = _game.gameController.lisOfObjectType(Monster).length;
 			
-			if (enemiesLeft == 0) {
+			if (canSpawn && enemiesLeft == 0) {
 				startNextWave();
+			}
+			if (!canSpawn) {
+				canSpawn = true;
 			}
 		}
 		
@@ -66,9 +77,8 @@ package game
 				
 				world.addChild(monster);
 				
-				monster.x = (_game.backGround.x + (_game.backGround.width / 2 * -monster.dir)) + (monster.width * 2) * i;
-				
-				monster.y = 555;
+				monster.x = _game.backGround.x + ((_game.backGround.width / 2) + (monster.width * 2) * i) * -monster.dir;
+				monster.y = 570;
 			}
 		}
 		

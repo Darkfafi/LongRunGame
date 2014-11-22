@@ -1,5 +1,6 @@
 package game.monsters 
 {
+	import placeholderAssets.MonsterWalkingPlaceHolder;
 	import placeholderAssets.PlayerAttackPlaceHolder;
 	import placeholderAssets.PlayerIdlePlaceHolder;
 	import placeholderAssets.PlayerMovePlaceHolder;
@@ -16,12 +17,12 @@ package game.monsters
 			super(wave, direction);
 			
 			//animations of Golem
-			preAnim = [new PlayerIdlePlaceHolder, new PlayerAttackPlaceHolder, new PlayerMovePlaceHolder];
+			preAnim = [new MonsterWalkingPlaceHolder, new PlayerAttackPlaceHolder, new PlayerMovePlaceHolder];
 		}
 		override protected function setStats(wave : int):void 
 		{
 			//stats of Golem
-			health = 35;
+			health = 45;
 			attackDmg = 5;
 			_speed = 0.5;
 			

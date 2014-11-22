@@ -48,10 +48,9 @@ package game
 			updateLevelText();
 		}
 		
-		private function updateLevelText():void 
+		public function updateLevelText():void 
 		{
 			var _game : Game = parent as Game;
-			trace(_game);
 			levelText.changeText("LEVEL " + _game.level.toString());
 		}
 		

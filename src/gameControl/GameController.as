@@ -29,19 +29,16 @@ package gameControl
 		
 		private function objectRemoved(e:Event):void 
 		{
-			if (e.target is GameObject) {
-				var object : GameObject = e.target as GameObject;
-				var index : int = gameObjects.indexOf(object);
-				gameObjects.splice(index, 1);
-			}
+			var object : GameObject = e.target as GameObject;
+			var index : int = gameObjects.indexOf(object);
+			gameObjects.splice(index, 1);
 		}
 		
 		private function objectAdded(e:Event):void 
 		{
-			if (e.target is GameObject) {
-				var object : GameObject = e.target as GameObject;
-				gameObjects.push(object);
-			}
+			
+			var object : GameObject = e.target as GameObject;
+			gameObjects.push(object);
 			
 			if (e.target is BackGround) {
 				background = e.target  as BackGround;

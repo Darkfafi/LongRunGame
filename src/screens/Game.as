@@ -4,6 +4,7 @@ package screens
 	import flash.events.Event;
 	import flash.geom.Rectangle;
 	import game.BackGround;
+	import game.interactiveObjects.attackUpgrade.AttackUpgradeObject;
 	import game.interactiveObjects.UpgradeObject;
 	import game.mainObjects.Player;
 	import game.mainObjects.Tower;
@@ -55,17 +56,27 @@ package screens
 		{
 			addBackground();
 			buildTower();
+			placeUpgradeObjects();
 			addPlayer();
 			addChild(ui);
 			waveSystem.setWave(1);
 		}
 		private function nextLevel(e : Event) :void {
 			_level ++;
+			ui.updateLevelText();
 			waveSystem.setWave(1);
 			buildTower();
 			player.x = stage.stageWidth / 2;
 			player.y = (stage.stageHeight - player.height / 2);
 			addChild(player);
+		}
+		
+		private function placeUpgradeObjects():void 
+		{
+			var upgAttack : UpgradeObject = new AttackUpgradeObject();
+			upgAttack.x = stage.stageWidth / 3;
+			upgAttack.y = 550;
+			addChild(upgAttack);
 		}
 		private function buildTower():void 
 		{
@@ -74,11 +85,6 @@ package screens
 				tower = null;
 			}
 			tower = new Tower(level);
-			
-			var upgrdSys : UpgradeObject = new UpgradeObject();
-			upgrdSys.x = stage.stageWidth / 3;
-			upgrdSys.y = 550;
-			addChild(upgrdSys);
 			
 			tower.x = stage.stageWidth / 2;
 			tower.y = (stage.stageHeight - tower.height) - 30;

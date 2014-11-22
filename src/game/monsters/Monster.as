@@ -39,8 +39,8 @@ package game.monsters
 		
 		protected function setStats(wave : int):void 
 		{
-			health += wave * health / 4;
-			attackDmg += wave * attackDmg / 4;
+			health += wave * health / 5;
+			attackDmg += wave * attackDmg / 5;
 			bricksToDrop = Math.floor(Math.random() * attackDmg / 4) + 2;
 		}
 		
