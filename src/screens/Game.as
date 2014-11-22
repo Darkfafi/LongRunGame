@@ -4,6 +4,7 @@ package screens
 	import flash.events.Event;
 	import flash.geom.Rectangle;
 	import game.BackGround;
+	import game.interactiveObjects.UpgradeObject;
 	import game.mainObjects.Player;
 	import game.mainObjects.Tower;
 	import game.monsters.Golem;
@@ -73,6 +74,11 @@ package screens
 				tower = null;
 			}
 			tower = new Tower(level);
+			
+			var upgrdSys : UpgradeObject = new UpgradeObject();
+			upgrdSys.x = stage.stageWidth / 3;
+			upgrdSys.y = 550;
+			addChild(upgrdSys);
 			
 			tower.x = stage.stageWidth / 2;
 			tower.y = (stage.stageHeight - tower.height) - 30;

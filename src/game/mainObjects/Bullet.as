@@ -48,7 +48,7 @@ package game.mainObjects
 			if (other is Monster) {
 				var monster : Monster = other as Monster;
 				monster.getDamage(bulletDmg);
-				//impact
+				//impact (explosion or something)
 				removeObject();
 			}
 		}
