@@ -27,10 +27,9 @@ package game
 			_game = world as Game;
 			
 			world.addEventListener(Event.REMOVED_FROM_STAGE, objectRemoved, true);
-			world.addEventListener(Tower.GAME_WON, dontSpawn);
 		}
 		
-		private function dontSpawn(e:Event):void 
+		public function dontSpawn():void 
 		{
 			canSpawn = false;
 		}
@@ -40,25 +39,28 @@ package game
 			_wave = waveInt - 1;
 			
 			startNextWave();
+			
+			if (!canSpawn) {
+				canSpawn = true;
+			}
 		}
 		
 		public function spawnWave() :void {
 			
-			var amount : int = 1 + (_wave * 0.2);
-			if (amount > 5) {
-				amount = 5;
+			var amount : int = 1 + (_wave * (_game.level * 0.2));
+			if (amount > 7) {
+				amount = 7;
 			}
 			spawnMonsters(amount);
 		}
 		private function objectRemoved(e:Event):void 
 		{
 			var enemiesLeft : int = _game.gameController.lisOfObjectType(Monster).length;
-			
-			if (canSpawn && enemiesLeft == 0) {
-				startNextWave();
-			}
-			if (!canSpawn) {
-				canSpawn = true;
+			if(e.target is Monster){
+				trace(enemiesLeft);
+				if (canSpawn && enemiesLeft == 0) {
+					startNextWave();
+				}
 			}
 		}
 		
@@ -68,6 +70,7 @@ package game
 			var hudEvent : HudEvent = new HudEvent(NEXT_WAVE, _wave, true);
 			world.dispatchEvent(hudEvent);
 			spawnWave();
+			//if wave == 666 hen spawn boss
 		}
 		private function spawnMonsters(amount:int):void 
 		{

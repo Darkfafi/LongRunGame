@@ -22,7 +22,7 @@ package game.monsters
 		override protected function setStats(wave : int):void 
 		{
 			//stats of Golem
-			health = 45;
+			health = 150;
 			attackDmg = 5;
 			_speed = 0.5;
 			

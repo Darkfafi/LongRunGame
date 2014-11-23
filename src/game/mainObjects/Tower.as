@@ -25,7 +25,7 @@ package game.mainObjects
 		{
 			addEventListener(Event.ADDED_TO_STAGE, init);
 			interActive = true;
-			bricksPerStage = level * 10;
+			bricksPerStage = level * 5;
 			setMaxBricks(bricksPerStage * 10);
 		}
 		
@@ -71,7 +71,6 @@ package game.mainObjects
 		}
 		private function drawTower() :void {
 			var tilesToDraw : int = totalBricks / bricksPerStage;
-			trace(tilesToDraw);
 			var l : int = tiles.length;
 			if(tilesToDraw <= l){
 				for (var i : int = l - 1; i >= tilesToDraw; i--) {

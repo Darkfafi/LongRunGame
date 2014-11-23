@@ -62,13 +62,27 @@ package screens
 			waveSystem.setWave(1);
 		}
 		private function nextLevel(e : Event) :void {
+			trace("next level");
 			_level ++;
 			ui.updateLevelText();
+			waveSystem.dontSpawn();
+			deleteAllMonsters();
 			waveSystem.setWave(1);
+			
 			buildTower();
 			player.x = stage.stageWidth / 2;
 			player.y = (stage.stageHeight - player.height / 2);
 			addChild(player);
+		}
+		
+		private function deleteAllMonsters():void 
+		{
+			var allMonsters : Array = gameController.lisOfObjectType(Monster);
+			
+			for (var i : int = allMonsters.length - 1; i >= 0; i--) {
+				var monster : Monster = allMonsters[i] as Monster;
+				monster.removeObject();
+			}
 		}
 		
 		private function placeUpgradeObjects():void 
