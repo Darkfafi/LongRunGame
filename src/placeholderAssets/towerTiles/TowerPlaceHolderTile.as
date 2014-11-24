@@ -12,7 +12,7 @@ package placeholderAssets.towerTiles
 		{
 			graphics.lineStyle(1, 0xff0000);
 			graphics.beginFill(0x000000, 1);
-			graphics.drawRect(0, -50, 109, 49);
+			graphics.drawRect(-54.5, -25, 109, 49);
 			graphics.endFill();
 		}
 		

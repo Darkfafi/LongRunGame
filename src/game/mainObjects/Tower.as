@@ -27,12 +27,13 @@ package game.mainObjects
 			interActive = true;
 			bricksPerStage = level * 5;
 			setMaxBricks(bricksPerStage * 10);
+			buildTower();
 		}
 		
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			buildTower();
+		
 		}
 		
 		private function buildTower():void {

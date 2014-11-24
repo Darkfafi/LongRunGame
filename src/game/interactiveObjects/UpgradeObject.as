@@ -19,21 +19,12 @@ package game.interactiveObjects
 		{
 			super();
 			interActive = true;
-			
-			addEventListener(Event.ADDED_TO_STAGE, init);
-		}
-	
-		private function init(e:Event):void 
-		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);
-			
 			drawUpgradeObject();
 			selectUpgradeScreen();
 			
 			addChild(upgradeScreen);
 			
 			upgradeScreen.visible = false;
-			
 		}
 		
 		private function drawUpgradeObject():void 
@@ -43,7 +34,7 @@ package game.interactiveObjects
 		
 		protected function selectUpgradeScreen():void 
 		{
-			upgradeScreen.x = art.width / 2;
+			upgradeScreen.y -= art.height / 2 + 5;
 		}
 		
 		override public function onInteraction(InteractingObject:GameObject):void 

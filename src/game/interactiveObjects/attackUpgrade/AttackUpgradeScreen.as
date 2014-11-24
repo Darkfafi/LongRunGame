@@ -18,6 +18,7 @@ package game.interactiveObjects.attackUpgrade
 		{
 			super.upgradePlayer();
 			target.attackDmg += 5;
+			trace(target.attackDmg);
 		}
 		
 	}

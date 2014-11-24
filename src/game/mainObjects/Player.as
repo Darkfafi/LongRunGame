@@ -55,7 +55,7 @@ package game.mainObjects
 		}
 		private function drawPlayer():void 
 		{
-			var preAnim : Array = [new PlayerIdlePlaceHolder, new PlayerMovePlaceHolder, new KnightShoot];
+			var preAnim : Array = [new PlayerIdlePlaceHolder, new KnightWalk, new KnightShoot];
 			for (var i : uint = 0; i < preAnim.length; i++) {
 				var anim : MovieClip = preAnim[i];
 				anim.visible = false;
@@ -63,13 +63,13 @@ package game.mainObjects
 				addChild(anim);
 				animations.push(anim);
 			}
-			animations[IDLE_ANIM].visible = true;
+			switchAnim(IDLE_ANIM);
 		}
 		
 		private function switchAnim(animInt : int) :void {
 			for (var i : uint = 0; i < animations.length; i++) {
 				animations[i].visible = false;
-				animations[i].gotoAndStop(1);
+				animations[i].stop();
 			}
 			animations[animInt].visible = true;
 			animations[animInt].play();

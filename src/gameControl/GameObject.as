@@ -2,6 +2,7 @@ package gameControl
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.geom.Rectangle;
 	/**
 	 * ...
 	 * @author Ramses di Perna
@@ -18,6 +19,8 @@ package gameControl
 		
 		private var removing : Boolean = false;
 		
+		protected var hitBox : Sprite;
+		
 		//tags
 		public var collider : Boolean = true;
 		public var interActive : Boolean = false;
@@ -31,11 +34,18 @@ package gameControl
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			parent.dispatchEvent(new Event(ADDED));
+			if(collider){
+				hitBox = new Sprite();
+				//hitBox.graphics.beginFill(0x000000, 1);
+				hitBox.graphics.drawRect( -width / 2, -height / 2, width, height);
+				//hitBox.graphics.endFill();
+				addChild(hitBox);
+			}
 		}
 		
 		public function willCollide(other : GameObject) : Boolean {
 			var result : Boolean = false;
-			if (this.hitTestObject(other)) {
+			if (hitBox.hitTestObject(other.hitBox)) {
 				result = true;
 			}
 			return result;

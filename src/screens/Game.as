@@ -62,7 +62,6 @@ package screens
 			waveSystem.setWave(1);
 		}
 		private function nextLevel(e : Event) :void {
-			trace("next level");
 			_level ++;
 			ui.updateLevelText();
 			waveSystem.dontSpawn();
@@ -101,7 +100,7 @@ package screens
 			tower = new Tower(level);
 			
 			tower.x = stage.stageWidth / 2;
-			tower.y = (stage.stageHeight - tower.height) - 30;
+			tower.y = (stage.stageHeight - tower.height / 2) - 30;
 			
 			addChild(tower);
 		}

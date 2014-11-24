@@ -1,5 +1,6 @@
 package game.monsters 
 {
+	import flash.events.Event;
 	import placeholderAssets.MonsterWalkingPlaceHolder;
 	import placeholderAssets.PlayerAttackPlaceHolder;
 	import placeholderAssets.PlayerIdlePlaceHolder;
@@ -14,17 +15,25 @@ package game.monsters
 		
 		public function Golem(wave : int, direction:int) 
 		{
+			preAnim = [new GolemWalkAnim, new GolemAttackAnim, new PlayerMovePlaceHolder];
+			
 			super(wave, direction);
 			
 			//animations of Golem
-			preAnim = [new MonsterWalkingPlaceHolder, new PlayerAttackPlaceHolder, new PlayerMovePlaceHolder];
+			addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		private function init(e:Event):void 
+		{
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+			hitBox.width = hitBox.width / 4;
 		}
 		override protected function setStats(wave : int):void 
 		{
 			//stats of Golem
 			health = 150;
 			attackDmg = 5;
-			_speed = 0.5;
+			_speed = 0.7;
 			
 			super.setStats(wave);
 		}

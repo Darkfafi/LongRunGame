@@ -12,7 +12,7 @@ package placeholderAssets
 		public function PlayerAttackPlaceHolder() 
 		{
 			graphics.beginFill(0xFFFFFF,1);
-			graphics.drawRect(-10, 0, 20, 30);
+			graphics.drawRect(-10, -15, 20, 30);
 			graphics.endFill();
 		}
 		

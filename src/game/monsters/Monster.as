@@ -14,7 +14,7 @@ package game.monsters
 	public class Monster extends MovingGameObject
 	{
 		//animations / art
-		protected var preAnim : Array = [];
+		protected var preAnim : Array;
 		
 		protected const MOVEMENT_ANIM : int = 0;
 		protected const ATTACK_ANIM : int = 1;
@@ -33,10 +33,9 @@ package game.monsters
 		
 		public function Monster(wave : int,direction : int) 
 		{
-			addEventListener(Event.ADDED_TO_STAGE, init);
 			setStats(wave);
-			//moet berekend worden met waar de tower staat.
 			_dir = direction;
+			drawMonster();
 		}
 		
 		protected function setStats(wave : int):void 
@@ -45,32 +44,25 @@ package game.monsters
 			attackDmg += wave * (attackDmg * 0.02);
 			bricksToDrop = Math.floor(Math.random() * ((health * 0.15) / attackDmg)) + 2;
 			hpBar = new HpBar(health);
+			trace("HP: "+ health + " DMG " + attackDmg);
 		}
-		
-		private function init(e:Event):void 
-		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);
-			drawMonster();
-		}
-		
 		protected function drawMonster():void 
 		{
 			for (var i : uint = 0; i < preAnim.length; i++) {
 				var anim : MovieClip = preAnim[i];
-				anim.visible = false;
-				anim.stop();
 				addChild(anim);
 				animations.push(anim);
 			}
-			animations[MOVEMENT_ANIM].visible = true;
+			
+			switchAnim(MOVEMENT_ANIM);
 			
 			//place HealthBar
-			hpBar.x -= width / 2;
-			hpBar.y = y - height;
+			hpBar.x -= width / 7;
+			hpBar.y = y - height / 2;
 			
 			addChild(hpBar);
 			if (dir == -1) {
-				hpBar.x += this.width;
+				hpBar.x += this.width / 3;
 				hpBar.scaleX *= -1;
 			}
 		}
@@ -78,8 +70,10 @@ package game.monsters
 		protected function switchAnim(animInt : int) :void {
 			for (var i : uint = 0; i < animations.length; i++) {
 				animations[i].visible = false;
-				animations[i].gotoAndStop(1);
+				animations[i].stop();
 			}
+			
+			
 			animations[animInt].visible = true;
 			animations[animInt].play();
 		}
@@ -103,6 +97,7 @@ package game.monsters
 			_dir = 0;
 			attackDmg = 0;
 			switchAnim(DEATH_ANIM);
+			//after death anim
 			removeObject();
 		}
 		
@@ -111,7 +106,7 @@ package game.monsters
 			for (var i : int = 0; i < amount; i++) {
 				var brick : BrickCollectible = new BrickCollectible();
 				brick.x = this.x + ((brick.width + 1) * i);
-				brick.y = this.y;
+				brick.y = this.y + height / 2.2;
 				parent.addChild(brick);
 			}
 		}
@@ -119,6 +114,9 @@ package game.monsters
 		{
 			if (other is Tower && attacking == false) {
 				attack(other as Tower);
+			}
+			if (animations[ATTACK_ANIM].currentFrame == animations[ATTACK_ANIM].totalFrames) {
+				attacking = false;
 			}
 		}
 		

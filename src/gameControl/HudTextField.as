@@ -14,6 +14,7 @@ package gameControl
 		public function HudTextField(text : String = "", size : int = 20,color : uint = 0x000000) 
 		{
 			super();
+			collider = false;
 			format.size = size;
 			textField.defaultTextFormat = format;
 			textField.multiline = true;

@@ -12,7 +12,7 @@ package placeholderAssets
 		public function PlayerIdlePlaceHolder() 
 		{
 			graphics.beginFill(0x000000,1);
-			graphics.drawRect(-10, 0, 20, 30);
+			graphics.drawRect(-10, -15, 20, 30);
 			graphics.endFill();
 		}
 		

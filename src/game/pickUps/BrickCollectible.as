@@ -21,7 +21,7 @@ package game.pickUps
 		private function drawBrick():void 
 		{
 			art.graphics.beginFill(0x773355, 1);
-			art.graphics.drawRect(0, 0, 10, 5);
+			art.graphics.drawRect(-2.5, 0, 10, 5);
 			art.graphics.endFill();
 			addChild(art);
 			

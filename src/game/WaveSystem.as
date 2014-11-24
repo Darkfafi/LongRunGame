@@ -47,7 +47,7 @@ package game
 		
 		public function spawnWave() :void {
 			
-			var amount : int = 1 + (_wave * (_game.level * 0.2));
+			var amount : int = 1 + (_wave * (_game.level * 0.5));
 			if (amount > 7) {
 				amount = 7;
 			}
@@ -78,10 +78,10 @@ package game
 				var pos : int = Math.floor(Math.random() * 2);
 				var monster : Monster = new Golem(_wave, pos == 1 ? 1 : -1);
 				
-				world.addChild(monster);
+				world.addChildAt(monster,1);
 				
-				monster.x = _game.backGround.x + ((_game.backGround.width / 2) + (monster.width * 2) * i) * -monster.dir;
-				monster.y = 570;
+				monster.x = _game.backGround.x + ((_game.backGround.width / 2 + monster.width / 2) + (monster.width) * i) * -monster.dir;
+				monster.y = monster.height * 1.1;
 			}
 		}
 		

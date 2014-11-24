@@ -11,9 +11,8 @@ package game.interactiveObjects.attackUpgrade
 		
 		public function AttackUpgradeObject() 
 		{
-			super();
-			
 			art = new PlayerAttackPlaceHolder();
+			super();
 		}
 		
 		override protected function selectUpgradeScreen():void 
