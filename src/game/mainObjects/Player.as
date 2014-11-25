@@ -55,21 +55,23 @@ package game.mainObjects
 		}
 		private function drawPlayer():void 
 		{
-			var preAnim : Array = [new PlayerIdlePlaceHolder, new KnightWalk, new KnightShoot];
+			var preAnim : Array = [new KnightIdle, new KnightWalk, new KnightShoot];
 			for (var i : uint = 0; i < preAnim.length; i++) {
-				var anim : MovieClip = preAnim[i];
+				var anim : MovieClip = preAnim[i] as MovieClip;
 				anim.visible = false;
 				anim.stop();
-				addChild(anim);
 				animations.push(anim);
+				addChild(anim);
 			}
 			switchAnim(IDLE_ANIM);
 		}
 		
 		private function switchAnim(animInt : int) :void {
-			for (var i : uint = 0; i < animations.length; i++) {
+			for (var i : int = animations.length - 1; i >= 0; i--) {
 				animations[i].visible = false;
 				animations[i].stop();
+				//animations[i].gotoAndStop(1);
+				//trace(animations[i]);
 			}
 			animations[animInt].visible = true;
 			animations[animInt].play();
@@ -82,6 +84,7 @@ package game.mainObjects
 		
 		private function animCheck():void 
 		{
+			//trace(animations[ATTACK_ANIM].currentFrame);
 			if (animations[ATTACK_ANIM].currentFrame == animations[ATTACK_ANIM].totalFrames) {
 				canShoot = true;
 			}
@@ -112,7 +115,7 @@ package game.mainObjects
 		{
 			if(canShoot){
 				super.movement();
-				if (dir == -1 || dir == 1 && animations[MOVEMENT_ANIM].visible == false) {
+				if (dir == -1 && animations[MOVEMENT_ANIM].visible == false || dir == 1 && animations[MOVEMENT_ANIM].visible == false) {
 					switchAnim(MOVEMENT_ANIM);
 				}else if (dir == 0 && animations[IDLE_ANIM].visible == false) {
 					switchAnim(IDLE_ANIM);

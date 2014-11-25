@@ -9,8 +9,8 @@ package gameControl
 	 */
 	public class GameObject extends Sprite
 	{
-		public static const ADDED : String = "added";
-		public static const REMOVED : String = "removed";
+		public static const ADDED : String = "addedGameOb";
+		public static const REMOVED : String = "removedGameOb";
 		
 		public var info : int;
 		
@@ -33,7 +33,7 @@ package gameControl
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			parent.dispatchEvent(new Event(ADDED));
+			dispatchEvent(new Event(ADDED,true));
 			if(collider){
 				hitBox = new Sprite();
 				//hitBox.graphics.beginFill(0x000000, 1);
@@ -71,7 +71,7 @@ package gameControl
 			if (!removing) {
 				removing = true;
 				collider = false;
-				parent.dispatchEvent(new Event(REMOVED));
+				dispatchEvent(new Event(REMOVED,true));
 				parent.removeChild(this);
 			}
 		}

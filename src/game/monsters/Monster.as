@@ -72,8 +72,6 @@ package game.monsters
 				animations[i].visible = false;
 				animations[i].stop();
 			}
-			
-			
 			animations[animInt].visible = true;
 			animations[animInt].play();
 		}
@@ -81,26 +79,13 @@ package game.monsters
 		public function getDamage(dmg : int) :void {
 			health -= dmg;
 			
-			hpBar.scaleBar(health);
-			
 			this.x += scaleX * -1 * (dmg * 0.1);
 			if (health <= 0) {
 				health = 0;
-				death();
+				startDeath();
 			}
+			hpBar.scaleBar(health);
 		}
-		
-		protected function death():void 
-		{
-			//deathAnim
-			dropBricks(bricksToDrop);
-			_dir = 0;
-			attackDmg = 0;
-			switchAnim(DEATH_ANIM);
-			//after death anim
-			removeObject();
-		}
-		
 		protected function dropBricks(amount : int):void 
 		{
 			for (var i : int = 0; i < amount; i++) {
@@ -110,14 +95,40 @@ package game.monsters
 				parent.addChild(brick);
 			}
 		}
+		override public function update():void 
+		{
+			super.update();
+			checkAnimationEvents();
+		}
 		override public function onCollision(other:GameObject):void 
 		{
 			if (other is Tower && attacking == false) {
 				attack(other as Tower);
 			}
+		}
+		
+		private function checkAnimationEvents():void 
+		{
+			//trace(animations[DEATH_ANIM].currentFrame +" " + animations[DEATH_ANIM].totalFrames);
 			if (animations[ATTACK_ANIM].currentFrame == animations[ATTACK_ANIM].totalFrames) {
 				attacking = false;
 			}
+			if (animations[DEATH_ANIM].currentFrame == animations[DEATH_ANIM].totalFrames) {
+				animations[DEATH_ANIM].stop();
+				death();
+			}
+		}
+		protected function startDeath():void 
+		{
+			collider = false;
+			_dir = 0;
+			attackDmg = 0;
+			switchAnim(DEATH_ANIM);
+		}
+		private function death():void 
+		{
+			dropBricks(bricksToDrop);
+			removeObject();
 		}
 		
 		protected function attack(tower : Tower):void 
@@ -125,9 +136,7 @@ package game.monsters
 			_dir = 0;
 			switchAnim(ATTACK_ANIM);
 			tower.damageTower(attackDmg);
-			trace(attackDmg);
 			attacking = true;
-			//als attack animation klaar is. attacking weer terug op falsezodat hij weerk kan aanvallen.
 		}
 		
 	}

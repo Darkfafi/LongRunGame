@@ -15,7 +15,7 @@ package game.monsters
 		
 		public function Golem(wave : int, direction:int) 
 		{
-			preAnim = [new GolemWalkAnim, new GolemAttackAnim, new PlayerMovePlaceHolder];
+			preAnim = [new GolemWalkAnim, new GolemAttackAnim, new GolemDeathAnim];
 			
 			super(wave, direction);
 			
