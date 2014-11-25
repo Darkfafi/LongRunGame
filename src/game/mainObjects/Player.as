@@ -53,6 +53,7 @@ package game.mainObjects
 			_speed = 5;
 			attackDmg = 15;
 			brickCapacity = 10;
+			bricksCarrying = brickCapacity / 2;
 		}
 		private function drawPlayer():void 
 		{

@@ -17,7 +17,7 @@ package game.interactiveObjects
 		public function UpgradeScreen() 
 		{
 			screenBgArt.graphics.beginFill(0x696969, 1);
-			screenBgArt.graphics.drawRect( -40, -50, 80, 50);
+			screenBgArt.graphics.drawRect( -55, -120, 110, 120);
 			screenBgArt.graphics.endFill();
 			addChild(screenBgArt);
 		}

@@ -34,7 +34,7 @@ package game.interactiveObjects
 		
 		protected function selectUpgradeScreen():void 
 		{
-			upgradeScreen.y -= art.height / 2 + 5;
+			upgradeScreen.y -= art.height / 1.5;
 		}
 		
 		override public function onInteraction(InteractingObject:GameObject):void 

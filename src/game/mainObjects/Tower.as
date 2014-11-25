@@ -4,6 +4,7 @@ package game.mainObjects
 	import flash.events.Event;
 	import gameControl.GameObject;
 	import gameControl.HudTextField;
+	import placeholderAssets.PlayerAttackPlaceHolder;
 	import placeholderAssets.towerTiles.GroundTowerPlaceHolder;
 	import placeholderAssets.towerTiles.TowerPlaceHolderTile;
 	
@@ -17,23 +18,17 @@ package game.mainObjects
 		public static const GAME_LOST : String = "gameLost";
 		
 		private var tiles : Array = [];
+		
 		public var maxBricks : int;
 		private var bricksPerStage : int;
 		public var totalBricks : int;
 		
 		public function Tower(level : int) 
 		{
-			addEventListener(Event.ADDED_TO_STAGE, init);
 			interActive = true;
 			bricksPerStage = level * 5;
 			setMaxBricks(bricksPerStage * 10);
 			buildTower();
-		}
-		
-		private function init(e:Event):void 
-		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);
-		
 		}
 		
 		private function buildTower():void {
@@ -51,7 +46,6 @@ package game.mainObjects
 				if (totalBricks % bricksPerStage == 0) {
 					addLayer();
 				}
-				//voeg houd of steentjes op tower
 			}
 			if (totalBricks >= maxBricks) {
 				totalBricks = maxBricks;

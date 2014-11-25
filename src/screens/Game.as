@@ -5,6 +5,7 @@ package screens
 	import flash.geom.Rectangle;
 	import game.BackGround;
 	import game.interactiveObjects.attackUpgrade.AttackUpgradeObject;
+	import game.interactiveObjects.capacityUpgrade.CapacityUpgradeObject;
 	import game.interactiveObjects.UpgradeObject;
 	import game.mainObjects.Player;
 	import game.mainObjects.Tower;
@@ -79,16 +80,20 @@ package screens
 			
 			for (var i : int = allMonsters.length - 1; i >= 0; i--) {
 				var monster : Monster = allMonsters[i] as Monster;
-				monster.removeObject();
+				monster.getDamage(int.MAX_VALUE);
 			}
 		}
 		
 		private function placeUpgradeObjects():void 
 		{
 			var upgAttack : UpgradeObject = new AttackUpgradeObject();
-			upgAttack.x = stage.stageWidth / 3;
+			var upgCapacity : UpgradeObject = new CapacityUpgradeObject();
+			upgAttack.x = backGround.x - stage.stageWidth / 3;
+			upgCapacity.x =  backGround.x + stage.stageWidth / 3
 			upgAttack.y = 550;
-			addChild(upgAttack);
+			upgCapacity.y = upgAttack.y;
+			addChildAt(upgAttack,1);
+			addChildAt(upgCapacity,1);
 		}
 		private function buildTower():void 
 		{
@@ -98,16 +103,16 @@ package screens
 			}
 			tower = new Tower(level);
 			
-			tower.x = stage.stageWidth / 2;
+			tower.x = backGround.x;
 			tower.y = (stage.stageHeight - tower.height / 2) - 30;
 			
-			addChild(tower);
+			addChildAt(tower,1);
 		}
 		private function addBackground():void 
 		{
 			backGround = new BackGround();
 			backGround.x = backGround.width / 3;
-			addChild(backGround);
+			addChildAt(backGround,0);
 		}
 		private function addPlayer():void 
 		{	

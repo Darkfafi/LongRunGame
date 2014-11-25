@@ -40,6 +40,7 @@ package game.mainObjects
 			bulletArt.graphics.beginFill(0x000000, 1);
 			bulletArt.graphics.drawCircle(0, 0, 5);
 			bulletArt.graphics.endFill();
+			
 			addChild(bulletArt);
 		}
 		override public function onCollision(other:GameObject):void 

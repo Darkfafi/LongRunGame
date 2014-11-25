@@ -1,4 +1,4 @@
-package game.interactiveObjects.attackUpgrade 
+package game.interactiveObjects.capacityUpgrade 
 {
 	import game.interactiveObjects.UpgradeObject;
 	import placeholderAssets.PlayerAttackPlaceHolder;
@@ -6,18 +6,18 @@ package game.interactiveObjects.attackUpgrade
 	 * ...
 	 * @author Ramses di Perna
 	 */
-	public class AttackUpgradeObject extends UpgradeObject 
+	public class CapacityUpgradeObject extends UpgradeObject 
 	{
 		
-		public function AttackUpgradeObject() 
+		public function CapacityUpgradeObject() 
 		{
-			art = new AttFornuisAnim();
+			art = new CapFornuisArt();
 			super();
 		}
 		
 		override protected function selectUpgradeScreen():void 
 		{
-			upgradeScreen = new AttackUpgradeScreen();
+			upgradeScreen = new CapacityUpgradeScreen();
 			super.selectUpgradeScreen();
 		}
 		

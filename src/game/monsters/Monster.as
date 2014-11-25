@@ -24,6 +24,8 @@ package game.monsters
 		
 		//checks
 		protected var attacking : Boolean = false;
+		protected var attackHitFrame : int = 0;
+		protected var curAttackingTower : Tower;
 		
 		//stats
 		protected var hpBar : HpBar;
@@ -78,7 +80,7 @@ package game.monsters
 		
 		public function getDamage(dmg : int) :void {
 			health -= dmg;
-			if(!attacking){
+			if(!attacking && dmg != int.MAX_VALUE){
 				this.x += scaleX * -1 * (dmg * 0.1);
 			}
 			if (health <= 0) {
@@ -112,6 +114,9 @@ package game.monsters
 		{
 			if (animations[ATTACK_ANIM].currentFrame == animations[ATTACK_ANIM].totalFrames) {
 				attacking = false;
+			}else if(animations[ATTACK_ANIM].currentFrame == attackHitFrame) {
+				curAttackingTower.damageTower(attackDmg);
+				curAttackingTower = null;
 			}
 			if (animations[DEATH_ANIM].currentFrame == animations[DEATH_ANIM].totalFrames) {
 				animations[DEATH_ANIM].stop();
@@ -135,7 +140,7 @@ package game.monsters
 		{
 			_dir = 0;
 			switchAnim(ATTACK_ANIM);
-			tower.damageTower(attackDmg);
+			curAttackingTower = tower;
 			attacking = true;
 		}
 		

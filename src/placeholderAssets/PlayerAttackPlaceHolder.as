@@ -11,8 +11,8 @@ package placeholderAssets
 		
 		public function PlayerAttackPlaceHolder() 
 		{
-			graphics.beginFill(0xFFFFFF,1);
-			graphics.drawRect(-10, -15, 20, 30);
+			graphics.beginFill(0x773355, 1);
+			graphics.drawRect(-2.5, 0, 10, 5);
 			graphics.endFill();
 		}
 		
