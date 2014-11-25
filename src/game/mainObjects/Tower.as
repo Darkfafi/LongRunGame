@@ -71,7 +71,12 @@ package game.mainObjects
 			drawTower();
 		}
 		private function drawTower() :void {
-			var tilesToDraw : int = totalBricks / bricksPerStage;
+			var tilesToDraw : int;
+			if(totalBricks >= bricksPerStage){
+				tilesToDraw = totalBricks / bricksPerStage;
+			}else if(totalBricks > 0){
+				tilesToDraw = 1; 
+			}
 			var l : int = tiles.length;
 			if(tilesToDraw <= l){
 				for (var i : int = l - 1; i >= tilesToDraw; i--) {
@@ -97,6 +102,7 @@ package game.mainObjects
 			super.onInteraction(InteractingObject);
 			if (InteractingObject is Player) {
 				var player : Player = InteractingObject as Player;
+				player.buildUpTower();
 				addBricks(player.bricksCarrying);
 				player.bricksCarrying = 0;
 			}

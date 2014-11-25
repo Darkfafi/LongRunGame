@@ -21,6 +21,7 @@ package game.mainObjects
 		private const IDLE_ANIM : int = 0;
 		private const MOVEMENT_ANIM : int = 1;
 		private const ATTACK_ANIM : int = 2;
+		private const TOWER_BUILD_ANIM : int = 3;
 		
 		private var animations : Array = [];
 		
@@ -55,7 +56,7 @@ package game.mainObjects
 		}
 		private function drawPlayer():void 
 		{
-			var preAnim : Array = [new KnightIdle, new KnightWalk, new KnightShoot];
+			var preAnim : Array = [new KnightIdle, new KnightWalk, new KnightShoot, new KnightTowerBuild];
 			for (var i : uint = 0; i < preAnim.length; i++) {
 				var anim : MovieClip = preAnim[i] as MovieClip;
 				anim.visible = false;
@@ -69,12 +70,13 @@ package game.mainObjects
 		private function switchAnim(animInt : int) :void {
 			for (var i : int = animations.length - 1; i >= 0; i--) {
 				animations[i].visible = false;
-				animations[i].stop();
-				//animations[i].gotoAndStop(1);
-				//trace(animations[i]);
+				animations[i].gotoAndStop(1);
 			}
 			animations[animInt].visible = true;
 			animations[animInt].play();
+		}
+		public function buildUpTower() :void {
+			switchAnim(TOWER_BUILD_ANIM);
 		}
 		override public function update():void 
 		{
@@ -84,9 +86,11 @@ package game.mainObjects
 		
 		private function animCheck():void 
 		{
-			//trace(animations[ATTACK_ANIM].currentFrame);
 			if (animations[ATTACK_ANIM].currentFrame == animations[ATTACK_ANIM].totalFrames) {
 				canShoot = true;
+			}
+			if (animations[TOWER_BUILD_ANIM].currentFrame == animations[TOWER_BUILD_ANIM].totalFrames) {
+				switchAnim(IDLE_ANIM);
 			}
 		}
 		private function keyDown(e:KeyboardEvent):void 
@@ -100,7 +104,7 @@ package game.mainObjects
 				playerAttack();
 			}
 			if (e.keyCode == Keyboard.X) {
-				if (collidedObject && collidedObject.interActive) {
+				if (collidedObject && collidedObject.interActive && canShoot) {
 					collidedObject.onInteraction(this);
 				}
 			}
@@ -113,7 +117,7 @@ package game.mainObjects
 		}
 		override public function movement():void 
 		{
-			if(canShoot){
+			if(canShoot && animations[TOWER_BUILD_ANIM].visible == false){
 				super.movement();
 				if (dir == -1 && animations[MOVEMENT_ANIM].visible == false || dir == 1 && animations[MOVEMENT_ANIM].visible == false) {
 					switchAnim(MOVEMENT_ANIM);
@@ -124,7 +128,7 @@ package game.mainObjects
 		}
 		private function playerAttack():void 
 		{
-			if (canShoot) {
+			if (canShoot && animations[TOWER_BUILD_ANIM].visible == false) {
 				canShoot = false;
 				switchAnim(ATTACK_ANIM);
 				playerShoot();
@@ -134,7 +138,7 @@ package game.mainObjects
 		{
 			var bullet : Bullet = new Bullet(attackDmg, scaleX);
 			bullet.x = x + width / 3 * scaleX;
-			bullet.y = y;
+			bullet.y = y - height / 3;
 			parent.addChild(bullet);
 			
 			this.x += scaleX * -1;

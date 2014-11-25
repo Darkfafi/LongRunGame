@@ -70,7 +70,7 @@ package gameControl
 		private function cameraMovement():void 
 		{
 			var check : Rectangle = new Rectangle(player.x - _world.stage.stageWidth / 2,0,_world.stage.stageWidth, _world.stage.stageHeight);
-			if (check.x > 0 - background.width / 6 && check.x < background.width / 6) {
+			if (check.x > 0 - background.width / 6 && check.x < background.width / 4) {
 				camera = check;
 				_world.root.scrollRect = camera;
 			}

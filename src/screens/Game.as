@@ -22,7 +22,6 @@ package screens
 		private var _level : int = 1;
 		
 		//stage objects
-		private var camera : Rectangle;
 		private var ui : UI;
 		public var gameController : GameController;
 		private var gameRunning : Boolean = true;
@@ -61,7 +60,9 @@ package screens
 			addChild(ui);
 			waveSystem.setWave(1);
 		}
+		
 		private function nextLevel(e : Event) :void {
+			//next level word getriggert door gotoNextLevel functie die de conceptart laat zien van level won. alle monsters delete en de dontSpawn aanzet. En een timer zet dat na zo veel sec next level getriggert word
 			_level ++;
 			ui.updateLevelText();
 			waveSystem.dontSpawn();
@@ -69,8 +70,6 @@ package screens
 			waveSystem.setWave(1);
 			
 			buildTower();
-			player.x = stage.stageWidth / 2;
-			player.y = (stage.stageHeight - player.height / 2);
 			addChild(player);
 		}
 		
@@ -113,7 +112,7 @@ package screens
 		private function addPlayer():void 
 		{	
 			player.x = stage.stageWidth / 2;
-			player.y = (stage.stageHeight - player.height / 2);
+			player.y = (stage.stageHeight - player.height / 5) + 11;
 			player.rotationY = 180;
 			addChild(player);
 		}

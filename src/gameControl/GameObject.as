@@ -37,7 +37,7 @@ package gameControl
 			if(collider){
 				hitBox = new Sprite();
 				//hitBox.graphics.beginFill(0x000000, 1);
-				hitBox.graphics.drawRect( -width / 2, -height / 2, width, height);
+				hitBox.graphics.drawRect( -width / 2, -height, width, height);
 				//hitBox.graphics.endFill();
 				addChild(hitBox);
 			}

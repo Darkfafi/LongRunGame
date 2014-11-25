@@ -8,11 +8,13 @@ package game
 	 */
 	public class BackGround extends GameObject
 	{
-		
+		private var art : Sprite = new BackgroundArt();
 		public function BackGround() 
 		{
 			collider = false;
+			addChild(art);
 			
+			/*
 			graphics.beginFill(0x00FFFF, 1);
 			graphics.drawRect(-700, 0, 1400, 600);
 			graphics.endFill();
@@ -25,6 +27,7 @@ package game
 			graphics.beginFill(0x656545, 1);
 			graphics.drawRect( -700, 550, 1400, 50);
 			graphics.endFill();
+			*/
 		}
 		
 	}

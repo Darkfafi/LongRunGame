@@ -5,6 +5,7 @@ package game
 	import flash.events.Event;
 	import game.mainObjects.Tower;
 	import game.monsters.Golem;
+	import game.monsters.GolemDog;
 	import game.monsters.Monster;
 	import gameControl.GameController;
 	import screens.Game;
@@ -47,9 +48,9 @@ package game
 		
 		public function spawnWave() :void {
 			
-			var amount : int = 1 + (_wave * (_game.level * 0.5));
-			if (amount > 7) {
-				amount = 7;
+			var amount : int = 1 + (_wave * (_game.level * 1));
+			if (amount > 15) {
+				amount = 15;
 			}
 			spawnMonsters(amount);
 		}
@@ -74,14 +75,22 @@ package game
 		}
 		private function spawnMonsters(amount:int):void 
 		{
+			var monster : Monster;
+			if (_wave % 5 == 0) {
+				amount /= 2;
+			}
+			
 			for (var i : int = 0; i < amount; i++) {
 				var pos : int = Math.floor(Math.random() * 2);
-				var monster : Monster = new Golem(_wave, pos == 1 ? 1 : -1);
-				
+				if(_wave%5 == 0){
+					monster = new GolemDog(_wave, pos == 1 ? 1 : -1);
+				}else {
+					monster = new Golem(_wave, pos == 1 ? 1 : -1);
+				}
 				world.addChildAt(monster,1);
 				
-				monster.x = _game.backGround.x + ((_game.backGround.width / 2 + monster.width / 2) + (monster.width) * i) * -monster.dir;
-				monster.y = monster.height * 1.1;
+				monster.x = _game.backGround.x + ((_game.backGround.width / 2 + monster.width / 3) + (monster.width/2) * i) * -monster.dir;
+				monster.y = 570;
 			}
 		}
 		
