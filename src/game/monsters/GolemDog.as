@@ -14,13 +14,15 @@ package game.monsters
 			
 			super(wave, direction);
 			
+			attackHitFrame = 75;
+			
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			hitBox.width = hitBox.width / 2;
+			hitBox.width = hitBox.width - 10;
 		}	
 		
 		override protected function setStats(wave : int):void 

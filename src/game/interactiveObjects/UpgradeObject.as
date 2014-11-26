@@ -18,6 +18,7 @@ package game.interactiveObjects
 		public function UpgradeObject() 
 		{
 			super();
+			addEventListener(Event.ADDED_TO_STAGE, init);
 			interActive = true;
 			drawUpgradeObject();
 			selectUpgradeScreen();
@@ -27,9 +28,15 @@ package game.interactiveObjects
 			upgradeScreen.visible = false;
 		}
 		
+		private function init(e:Event):void 
+		{
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+			hitBox.width = 20;
+			hitBox.height = 20
+		}
 		private function drawUpgradeObject():void 
 		{
-			addChild(art);
+			addChild(art);;
 		}
 		
 		protected function selectUpgradeScreen():void 

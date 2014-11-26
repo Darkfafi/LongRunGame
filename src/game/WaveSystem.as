@@ -87,7 +87,7 @@ package game
 				}else {
 					monster = new Golem(_wave, pos == 1 ? 1 : -1);
 				}
-				world.addChildAt(monster,3);
+				world.addChildAt(monster,4);
 				
 				monster.x = _game.backGround.x + ((_game.backGround.width / 2 + monster.width / 3) + (monster.width/2) * i) * -monster.dir;
 				monster.y = 570;

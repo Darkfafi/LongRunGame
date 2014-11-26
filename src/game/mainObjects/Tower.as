@@ -1,5 +1,6 @@
 package game.mainObjects 
 {
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import gameControl.GameObject;
@@ -49,7 +50,7 @@ package game.mainObjects
 			}
 			if (totalBricks >= maxBricks) {
 				totalBricks = maxBricks;
-				parent.dispatchEvent(new Event(GAME_WON));
+				//parent.dispatchEvent(new Event(GAME_WON));
 			}
 		}
 		private function addLayer():void {
@@ -79,15 +80,24 @@ package game.mainObjects
 				}
 			}else{
 				for (i = l; i < tilesToDraw; i++) {
-					var tile : Sprite;
-					if (i == 0) {
-						tile = new GroundTowerPlaceHolder();
-					}else {
-						tile = new TowerPlaceHolderTile();
+					if(tiles.length < 10){
+						var tile : MovieClip;
+						if (i == 0) {
+							tile = new GroundTileArtTower();
+						}else if(tiles.length < 9) {
+							tile = new TowerPieceOne();
+							tile.y = i * -tile.height;
+						}else {
+							tile = new TowerPieceTop();
+							tile.y = i * -tiles[8].height;
+						}
+						tiles.push(tile);
+						
+						if (i == 1) {
+							tile.y -= 10;
+						}
+						addChild(tile);
 					}
-					tiles.push(tile);
-					tile.y = i * -tile.height;
-					addChild(tile);
 				}
 			}
 		}

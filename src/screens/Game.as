@@ -112,7 +112,7 @@ package screens
 			tower = new Tower(level);
 			
 			tower.x = backGround.x;
-			tower.y = (stage.stageHeight - tower.height / 2) - 30;
+			tower.y = (stage.stageHeight - tower.height / 2) - 20;
 			
 			addChildAt(tower,1);
 		}

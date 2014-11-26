@@ -1,6 +1,7 @@
 package game.interactiveObjects.attackUpgrade 
 {
 	import game.interactiveObjects.UpgradeScreen;
+	import game.mainObjects.Player;
 	
 	/**
 	 * ...
@@ -12,13 +13,17 @@ package game.interactiveObjects.attackUpgrade
 		public function AttackUpgradeScreen() 
 		{
 			super();
-			
+		}
+		override public function selectUpgradeTarget(player:Player):void 
+		{
+			super.selectUpgradeTarget(player);
+			effectText.changeText(player.attackDmg + " +  5");
 		}
 		override protected function upgradePlayer():void 
 		{
 			super.upgradePlayer();
 			target.attackDmg += 5;
-			trace(target.attackDmg);
+			effectText.changeText(target.attackDmg + " +  5 <br> UPGRADED!");
 		}
 		
 	}

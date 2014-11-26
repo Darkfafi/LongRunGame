@@ -24,7 +24,7 @@ package game.monsters
 		
 		//checks
 		protected var attacking : Boolean = false;
-		protected var attackHitFrame : int = 0;
+		protected var attackHitFrame : int = 1;
 		protected var curAttackingTower : Tower;
 		
 		//stats
@@ -114,9 +114,10 @@ package game.monsters
 		{
 			if (animations[ATTACK_ANIM].currentFrame == animations[ATTACK_ANIM].totalFrames) {
 				attacking = false;
-			}else if(animations[ATTACK_ANIM].currentFrame == attackHitFrame) {
-				curAttackingTower.damageTower(attackDmg);
-				curAttackingTower = null;
+			}else if (animations[ATTACK_ANIM].currentFrame == attackHitFrame) {
+				if(curAttackingTower != null){
+					curAttackingTower.damageTower(attackDmg);
+				}
 			}
 			if (animations[DEATH_ANIM].currentFrame == animations[DEATH_ANIM].totalFrames) {
 				animations[DEATH_ANIM].stop();
