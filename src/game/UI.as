@@ -1,6 +1,7 @@
 package game 
 {
 	import events.HudEvent;
+	import flash.display.Sprite;
 	import flash.events.Event;
 	import game.mainObjects.Player;
 	import game.mainObjects.Tower;
@@ -17,6 +18,8 @@ package game
 		
 		private var gameController : GameController;
 		//----------------textFields------------------\\
+		
+		private var uibg : Sprite = new UIBackArt();
 		
 		private var levelText : HudTextField = new HudTextField("Level");
 		private var waveText : HudTextField = new HudTextField("Wave");
@@ -87,10 +90,16 @@ package game
 		
 		private function addUiToScreen():void 
 		{
-			levelText.x = stage.stageWidth / 2;
+			uibg.x -= 20;
+			uibg.y -= uibg.height / 2;
+			uibg.scaleX = 1.05;
+			uibg.alpha = 0.8;
+			stage.addChild(uibg);
+			
+			levelText.x = stage.stageWidth / 2 - 10;
 			waveText.x = levelText.x;
 			waveText.y = levelText.y + waveText.height / 3;
-			
+			playerBricks.x += 50;
 			bricksLeftText.x = stage.stageWidth - bricksLeftText.width / 1.5;
 			
 			stage.addChild(levelText);
@@ -101,7 +110,7 @@ package game
 		override public function destroy():void 
 		{
 			super.destroy();
-			
+			stage.removeChild(uibg);
 			stage.removeChild(levelText);
 			stage.removeChild(waveText);
 			stage.removeChild(bricksLeftText);

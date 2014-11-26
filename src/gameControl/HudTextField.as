@@ -16,6 +16,7 @@ package gameControl
 			super();
 			collider = false;
 			format.size = size;
+			format.color = color;
 			textField.defaultTextFormat = format;
 			textField.multiline = true;
 			textField.selectable = false;
