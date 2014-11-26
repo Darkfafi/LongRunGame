@@ -27,7 +27,7 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
-			switchScreen(GAME_SCREEN);
+			switchScreen(MENU_SCREEN);
 		}
 		
 		private function switchScreen(screen : String) :void {
@@ -37,9 +37,11 @@ package
 						menu.destroy();
 						removeChild(menu);
 						menu = null;
+						removeEventListener(Menu.START_GAME, startGame);
 					}
 					game = new Game();
 					addChild(game);
+					addEventListener(Game.BACK_TO_MENU, switchToMenu);
 				break
 				case MENU_SCREEN:
 					if (contains(game)) {
@@ -49,9 +51,20 @@ package
 					}
 					menu = new Menu();
 					addChild(menu);
+					addEventListener(Menu.START_GAME, startGame);
 				break
 				
 			}
+		}
+		
+		private function switchToMenu(e:Event):void 
+		{
+			switchScreen(MENU_SCREEN);
+		}
+		
+		private function startGame(e:Event):void 
+		{
+			switchScreen(GAME_SCREEN);
 		}
 	}
 	

@@ -20,6 +20,8 @@ package screens
 	 */
 	public class Game extends Screen
 	{
+		public static const BACK_TO_MENU : String = "backToMenu";
+		
 		private var _level : int = 1;
 		
 		//stage objects
@@ -44,12 +46,18 @@ package screens
 			
 			addEventListener(Event.ENTER_FRAME, update);
 			addEventListener(Tower.GAME_WON, nextLevel);
+			addEventListener(Tower.GAME_LOST, quitGame);
 			gameController = new GameController(this);
 			waveSystem = new WaveSystem(this);
 			ui = new UI(gameController);
 			
 			beginGame();
 			
+		}
+		
+		private function quitGame(e:Event):void 
+		{
+			dispatchEvent(new Event(BACK_TO_MENU, true));
 		}
 		
 		private function beginGame():void 
@@ -132,6 +140,15 @@ package screens
 		public function get level():int 
 		{
 			return _level;
+		}
+		
+		override public function destroy():void 
+		{
+			gameController.destroy();
+			removeEventListener(Event.ENTER_FRAME, update);
+			removeEventListener(Tower.GAME_WON, nextLevel);
+			removeEventListener(Tower.GAME_LOST, quitGame);
+			super.destroy();
 		}
 	}
 

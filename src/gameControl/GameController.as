@@ -79,5 +79,13 @@ package gameControl
 		public function getAllObjects() :Array {
 			return gameObjects;
 		}
+		
+		public function destroy() :void {
+			for (var i : int = gameObjects.length - 1; i >= 0; i--) {
+				gameObjects[i].removeObject();
+			}
+			_world.removeEventListener(GameObject.ADDED, objectAdded);
+			_world.removeEventListener(GameObject.REMOVED, objectRemoved);
+		}
 	}
 }

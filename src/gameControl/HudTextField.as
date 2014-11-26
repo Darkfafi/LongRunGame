@@ -35,6 +35,5 @@ package gameControl
 			format.size = size;
 			textField.setTextFormat(format);
 		}
-	}
-
+	}	
 }

@@ -70,10 +70,14 @@ package gameControl
 		public function removeObject():void {
 			if (!removing) {
 				removing = true;
+				destroy();
 				collider = false;
 				dispatchEvent(new Event(REMOVED,true));
 				parent.removeChild(this);
 			}
+		}
+		public function destroy() :void {
+			
 		}
 	}
 

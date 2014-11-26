@@ -155,5 +155,11 @@ package game.mainObjects
 				}
 			}	
 		}
+		override public function destroy():void 
+		{
+			super.destroy();
+			stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDown);
+			stage.removeEventListener(KeyboardEvent.KEY_UP, keyUp);
+		}
 	}
 }

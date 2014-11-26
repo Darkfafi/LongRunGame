@@ -98,7 +98,18 @@ package game
 			stage.addChild(bricksLeftText);
 			stage.addChild(playerBricks);
 		}
-		
+		override public function destroy():void 
+		{
+			super.destroy();
+			
+			stage.removeChild(levelText);
+			stage.removeChild(waveText);
+			stage.removeChild(bricksLeftText);
+			stage.removeChild(playerBricks);
+			
+			stage.removeEventListener(WaveSystem.NEXT_WAVE, updateWaveText);
+			stage.removeEventListener(Tower.GAME_WON, gameWon);
+		}
 	}
 
 }

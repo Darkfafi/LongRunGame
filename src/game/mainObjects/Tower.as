@@ -59,7 +59,7 @@ package game.mainObjects
 			totalBricks -= dmg;
 			if (totalBricks <= 0) {
 				totalBricks = 0
-				trace("GAME LOST");
+				parent.dispatchEvent(new Event(GAME_LOST));
 			}
 			//break sound
 			drawTower();
