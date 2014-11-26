@@ -14,6 +14,7 @@ package screens
 	import game.UI;
 	import game.WaveSystem;
 	import gameControl.GameController;
+	import flash.utils.setInterval;
 	/**
 	 * ...
 	 * @author Ramses di Perna
@@ -46,7 +47,7 @@ package screens
 			
 			addEventListener(Event.ENTER_FRAME, update);
 			addEventListener(Tower.GAME_WON, nextLevel);
-			addEventListener(Tower.GAME_LOST, quitGame);
+			addEventListener(Tower.GAME_LOST, endGame);
 			gameController = new GameController(this);
 			waveSystem = new WaveSystem(this);
 			ui = new UI(gameController);
@@ -55,7 +56,16 @@ package screens
 			
 		}
 		
-		private function quitGame(e:Event):void 
+		private function endGame(e:Event):void 
+		{
+			player.destroy();
+			gameRunning = false
+			//addChild(You lost!!!);
+			setInterval(quitGame, 4000);
+		}
+		
+		
+		private function quitGame():void 
 		{
 			dispatchEvent(new Event(BACK_TO_MENU, true));
 		}
@@ -112,7 +122,7 @@ package screens
 			tower = new Tower(level);
 			
 			tower.x = backGround.x;
-			tower.y = (stage.stageHeight - tower.height / 2) - 20;
+			tower.y = (stage.stageHeight - tower.height / 2);
 			
 			addChildAt(tower,1);
 		}

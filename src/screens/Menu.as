@@ -1,5 +1,6 @@
 package screens 
 {
+	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.ui.Keyboard;
@@ -11,9 +12,12 @@ package screens
 	{
 		public static const START_GAME : String = "startGameScreen";
 		
+		private var bg : MovieClip = new MenuBg();
+		
 		public function Menu() 
 		{
 			addEventListener(Event.ADDED_TO_STAGE, init);
+			addChild(bg);
 		}
 		
 		private function init(e:Event):void 

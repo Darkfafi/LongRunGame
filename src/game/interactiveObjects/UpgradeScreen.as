@@ -1,6 +1,7 @@
 package game.interactiveObjects 
 {
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import game.mainObjects.Player;
 	import gameControl.HudTextField;
 	/**
@@ -21,19 +22,22 @@ package game.interactiveObjects
 		
 		public function UpgradeScreen() 
 		{
-			screenBgArt.graphics.beginFill(0x696969, 1);
-			screenBgArt.graphics.drawRect( -55, -120, 110, 120);
-			screenBgArt.graphics.endFill();
+			addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		private function init(e:Event):void 
+		{
+			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addChild(screenBgArt);
 			placeText();
 		}
 		
 		private function placeText():void 
 		{
-			costText.x -= width / 5;
-			costText.y -= height;
+			costText.x += 2;
+			costText.y = -85;
 			effectText.x = costText.x;
-			effectText.y = costText.y + 20;
+			effectText.y = costText.y + 25;
 			addChild(costText);
 			addChild(effectText);
 		}

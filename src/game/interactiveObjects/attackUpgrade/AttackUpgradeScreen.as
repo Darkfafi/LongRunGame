@@ -13,6 +13,7 @@ package game.interactiveObjects.attackUpgrade
 		public function AttackUpgradeScreen() 
 		{
 			super();
+			screenBgArt = new AttackUpgradeScreenArt();
 		}
 		override public function selectUpgradeTarget(player:Player):void 
 		{
@@ -23,7 +24,7 @@ package game.interactiveObjects.attackUpgrade
 		{
 			super.upgradePlayer();
 			target.attackDmg += 5;
-			effectText.changeText(target.attackDmg + " +  5 <br> UPGRADED!");
+			effectText.changeText(target.attackDmg + " +  5");
 		}
 		
 	}

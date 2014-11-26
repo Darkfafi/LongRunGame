@@ -58,7 +58,7 @@ package game
 		{
 			var enemiesLeft : int = _game.gameController.lisOfObjectType(Monster).length;
 			if(e.target is Monster){
-				trace(enemiesLeft);
+				//trace(enemiesLeft);
 				if (canSpawn && enemiesLeft == 0) {
 					startNextWave();
 				}

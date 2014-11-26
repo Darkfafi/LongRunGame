@@ -55,6 +55,8 @@
     <element path="bin\assets.swc" />
     <element path="bin\assets16.swc" />
     <element path="bin\assets17.swc" />
+    <element path="bin\assets22.swc" />
+    <element path="bin\beginscherm.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

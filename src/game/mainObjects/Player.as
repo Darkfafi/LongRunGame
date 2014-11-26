@@ -1,5 +1,6 @@
 package game.mainObjects 
 {
+	import flash.display.Sprite;
 	import flash.ui.Keyboard;
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -24,7 +25,7 @@ package game.mainObjects
 		private const TOWER_BUILD_ANIM : int = 3;
 		
 		private var animations : Array = [];
-		
+		private var displayX : Sprite = new XDisplayInteractive();
 		private var canShoot : Boolean = true;
 		
 		//stats
@@ -66,6 +67,10 @@ package game.mainObjects
 				addChild(anim);
 			}
 			switchAnim(IDLE_ANIM);
+			
+			displayX.y -= height;
+			displayX.visible = false;
+			addChild(displayX);
 		}
 		
 		private function switchAnim(animInt : int) :void {
@@ -96,7 +101,7 @@ package game.mainObjects
 		}
 		private function keyDown(e:KeyboardEvent):void 
 		{
-			if (e.keyCode == Keyboard.LEFT) {
+			if (e.keyCode == Keyboard.LEFT) {		
 				_dir = -1;
 			}else if (e.keyCode == Keyboard.RIGHT) {
 				_dir = 1;
@@ -109,6 +114,7 @@ package game.mainObjects
 					collidedObject.onInteraction(this);
 				}
 			}
+			displayX.scaleX = dir * -1;
 		}
 		private function keyUp(e:KeyboardEvent):void 
 		{
@@ -145,6 +151,20 @@ package game.mainObjects
 			this.x += scaleX * -1;
 		}
 		
+		override public function onCollisionEnter(other:GameObject):void 
+		{
+			super.onCollisionEnter(other);
+			if (other.interActive && displayX.visible == false) {
+				displayX.visible = true;
+			}
+		}
+		override public function onCollisionExit(other:GameObject):void 
+		{
+			super.onCollisionExit(other);
+			if (other.interActive && displayX.visible == true) {
+				displayX.visible = false;
+			}
+		}
 		override public function onCollision(other:GameObject):void 
 		{
 			super.onCollision(other);
@@ -158,6 +178,7 @@ package game.mainObjects
 		override public function destroy():void 
 		{
 			super.destroy();
+			
 			stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			stage.removeEventListener(KeyboardEvent.KEY_UP, keyUp);
 		}

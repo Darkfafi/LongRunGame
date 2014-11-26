@@ -18,6 +18,8 @@ package game.mainObjects
 		public static const GAME_WON : String = "gameWon";
 		public static const GAME_LOST : String = "gameLost";
 		
+		private var totalTiles : int = 6;
+		
 		private var tiles : Array = [];
 		
 		public var maxBricks : int;
@@ -28,7 +30,7 @@ package game.mainObjects
 		{
 			interActive = true;
 			bricksPerStage = level * 5;
-			setMaxBricks(bricksPerStage * 10);
+			setMaxBricks(bricksPerStage * totalTiles);
 			buildTower();
 		}
 		
@@ -80,22 +82,21 @@ package game.mainObjects
 				}
 			}else{
 				for (i = l; i < tilesToDraw; i++) {
-					if(tiles.length < 10){
+					if(tiles.length < totalTiles){
 						var tile : MovieClip;
 						if (i == 0) {
-							tile = new GroundTileArtTower();
-						}else if(tiles.length < 9) {
-							tile = new TowerPieceOne();
-							tile.y = i * -tile.height;
+							tile = new GroundTowerPieceArtL();
+						}else if(tiles.length < totalTiles - 1) {
+							tile = new TowerPieceOneArtL();
+							tile.y = tiles[i - 1].y - tiles[i - 1].height;
 						}else {
 							tile = new TowerPieceTop();
-							tile.y = i * -tiles[8].height;
+							tile.y = tiles[i - 1].y - tiles[i - 1].height;
 						}
-						tiles.push(tile);
+						tile.scaleX = 1.5;
+						tile.scaleY = 1.5;
 						
-						if (i == 1) {
-							tile.y -= 10;
-						}
+						tiles.push(tile);
 						addChild(tile);
 					}
 				}

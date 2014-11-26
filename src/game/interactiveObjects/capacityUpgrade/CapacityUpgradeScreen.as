@@ -13,6 +13,7 @@ package game.interactiveObjects.capacityUpgrade
 		public function CapacityUpgradeScreen() 
 		{
 			super();
+			screenBgArt = new CapacityUpgradeScreenArt();
 			
 		}
 		override public function selectUpgradeTarget(player:Player):void 
@@ -24,7 +25,7 @@ package game.interactiveObjects.capacityUpgrade
 		{
 			super.upgradePlayer();
 			target.brickCapacity += 5;
-			effectText.changeText(target.brickCapacity + " +  5 <br> UPGRADED!");
+			effectText.changeText(target.brickCapacity + " +  5");
 		}
 		
 	}
