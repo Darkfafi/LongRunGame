@@ -8,7 +8,7 @@ package gameControl
 	 */
 	public class HudTextField extends GameObject 
 	{
-		private var format : TextFormat = new TextFormat("impact");
+		private var format : TextFormat = new TextFormat("Palatino");
 		private var textField : TextField = new TextField();
 		
 		public function HudTextField(text : String = "", size : int = 20,color : uint = 0x000000) 

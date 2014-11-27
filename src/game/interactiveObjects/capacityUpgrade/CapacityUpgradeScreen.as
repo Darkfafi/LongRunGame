@@ -19,13 +19,13 @@ package game.interactiveObjects.capacityUpgrade
 		override public function selectUpgradeTarget(player:Player):void 
 		{
 			super.selectUpgradeTarget(player);
-			effectText.changeText(player.brickCapacity + " +  5");
+			effectText.changeText(player.brickCapacity + " + 5");
 		}
 		override protected function upgradePlayer():void 
 		{
 			super.upgradePlayer();
 			target.brickCapacity += 5;
-			effectText.changeText(target.brickCapacity + " +  5");
+			effectText.changeText(target.brickCapacity + " + 5");
 		}
 		
 	}

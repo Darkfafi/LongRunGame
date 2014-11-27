@@ -46,7 +46,7 @@ package game.monsters
 			attackDmg += wave * (attackDmg * 0.02);
 			bricksToDrop = Math.floor(Math.random() * ((health * 0.15) / attackDmg)) + 2;
 			hpBar = new HpBar(health);
-			trace("HP: "+ health + " DMG " + attackDmg);
+			//trace("HP: "+ health + " DMG " + attackDmg);
 		}
 		protected function drawMonster():void 
 		{

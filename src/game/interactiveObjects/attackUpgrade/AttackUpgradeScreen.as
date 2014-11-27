@@ -18,13 +18,13 @@ package game.interactiveObjects.attackUpgrade
 		override public function selectUpgradeTarget(player:Player):void 
 		{
 			super.selectUpgradeTarget(player);
-			effectText.changeText(player.attackDmg + " +  5");
+			effectText.changeText(player.attackDmg + " + 5");
 		}
 		override protected function upgradePlayer():void 
 		{
 			super.upgradePlayer();
 			target.attackDmg += 5;
-			effectText.changeText(target.attackDmg + " +  5");
+			effectText.changeText(target.attackDmg + " + 5");
 		}
 		
 	}

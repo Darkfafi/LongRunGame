@@ -98,7 +98,7 @@ package game
 			
 			levelText.x = stage.stageWidth / 2 - 10;
 			waveText.x = levelText.x;
-			waveText.y = levelText.y + waveText.height / 3;
+			waveText.y = levelText.y + waveText.height / 4;
 			playerBricks.x += 50;
 			bricksLeftText.x = stage.stageWidth - bricksLeftText.width / 1.5;
 			
