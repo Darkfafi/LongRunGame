@@ -85,7 +85,11 @@ package game
 				if(_wave%5 == 0){
 					monster = new GolemDog(_wave, pos == 1 ? 1 : -1);
 				}else {
-					monster = new Golem(_wave, pos == 1 ? 1 : -1);
+					if (i <= (amount / 3) * 2) {
+						monster = new Golem(_wave, pos == 1 ? 1 : -1);
+					}else {
+						monster = new GolemDog(_wave, pos == 1 ? 1 : -1);
+					}
 				}
 				world.addChildAt(monster,4);
 				

@@ -114,7 +114,9 @@ package game.mainObjects
 					collidedObject.onInteraction(this);
 				}
 			}
-			displayX.scaleX = dir * -1;
+			if(canShoot){
+				displayX.scaleX = dir * -1;
+			}
 		}
 		private function keyUp(e:KeyboardEvent):void 
 		{

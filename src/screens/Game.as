@@ -15,6 +15,7 @@ package screens
 	import game.WaveSystem;
 	import gameControl.GameController;
 	import flash.utils.setInterval;
+	import flash.utils.clearInterval;
 	/**
 	 * ...
 	 * @author Ramses di Perna
@@ -24,6 +25,8 @@ package screens
 		public static const BACK_TO_MENU : String = "backToMenu";
 		
 		private var _level : int = 1;
+		
+		private var countDown : int;
 		
 		//stage objects
 		private var ui : UI;
@@ -61,12 +64,15 @@ package screens
 			player.destroy();
 			gameRunning = false
 			//addChild(You lost!!!);
-			setInterval(quitGame, 4000);
+			countDown = setInterval(quitGame, 4000);
 		}
 		
 		
 		private function quitGame():void 
 		{
+			clearInterval(countDown);
+			var cam : Rectangle = new Rectangle(0, 0, stage.stageWidth, stage.stageHeight);
+			this.root.scrollRect = cam;
 			dispatchEvent(new Event(BACK_TO_MENU, true));
 		}
 		

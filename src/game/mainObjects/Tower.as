@@ -52,6 +52,7 @@ package game.mainObjects
 			}
 			if (totalBricks >= maxBricks) {
 				totalBricks = maxBricks;
+				//play canon animation then after canon animation a white screen fading away and after that all monsters on screen are dying/dead and next level starts.
 				//parent.dispatchEvent(new Event(GAME_WON));
 			}
 		}
