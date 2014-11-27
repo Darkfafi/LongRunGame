@@ -54,7 +54,6 @@ package screens
 			gameController = new GameController(this);
 			waveSystem = new WaveSystem(this);
 			ui = new UI(gameController);
-			
 			beginGame();
 			
 		}

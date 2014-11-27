@@ -4,6 +4,7 @@ package
 	import flash.events.Event;
 	import screens.Game;
 	import screens.Menu;
+	import soundTools.SoundManager;
 	
 	/**
 	 * ...
@@ -27,7 +28,16 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
-			switchScreen(MENU_SCREEN);
+			SoundManager.loadSounds();
+			addEventListener(Event.ENTER_FRAME, checkSoundsLoaded);
+		}
+		
+		private function checkSoundsLoaded(e:Event):void 
+		{
+			if (SoundManager.allSoundsLoaded) {
+				removeEventListener(Event.ENTER_FRAME, checkSoundsLoaded);
+				switchScreen(MENU_SCREEN);
+			}
 		}
 		
 		private function switchScreen(screen : String) :void {
