@@ -8,9 +8,6 @@ package game.mainObjects
 	import game.pickUps.BrickCollectible;
 	import gameControl.GameObject;
 	import gameControl.MovingGameObject;
-	import placeholderAssets.PlayerAttackPlaceHolder;
-	import placeholderAssets.PlayerIdlePlaceHolder;
-	import placeholderAssets.PlayerMovePlaceHolder;
 	
 	/**
 	 * ...

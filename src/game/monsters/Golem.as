@@ -1,10 +1,6 @@
 package game.monsters 
 {
 	import flash.events.Event;
-	import placeholderAssets.MonsterWalkingPlaceHolder;
-	import placeholderAssets.PlayerAttackPlaceHolder;
-	import placeholderAssets.PlayerIdlePlaceHolder;
-	import placeholderAssets.PlayerMovePlaceHolder;
 	
 	/**
 	 * ...

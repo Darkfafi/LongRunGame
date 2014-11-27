@@ -1,7 +1,6 @@
 package game.interactiveObjects.attackUpgrade 
 {
 	import game.interactiveObjects.UpgradeObject;
-	import placeholderAssets.PlayerAttackPlaceHolder;
 	/**
 	 * ...
 	 * @author Ramses di Perna

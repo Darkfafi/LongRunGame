@@ -4,7 +4,6 @@ package game.interactiveObjects
 	import flash.events.Event;
 	import game.mainObjects.Player;
 	import gameControl.GameObject;
-	import placeholderAssets.PlayerAttackPlaceHolder;
 	
 	/**
 	 * ...

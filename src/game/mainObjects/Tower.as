@@ -5,9 +5,6 @@ package game.mainObjects
 	import flash.events.Event;
 	import gameControl.GameObject;
 	import gameControl.HudTextField;
-	import placeholderAssets.PlayerAttackPlaceHolder;
-	import placeholderAssets.towerTiles.GroundTowerPlaceHolder;
-	import placeholderAssets.towerTiles.TowerPlaceHolderTile;
 	
 	/**
 	 * ...
