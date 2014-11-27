@@ -26,6 +26,8 @@ package game.mainObjects
 		private var bricksPerStage : int;
 		public var totalBricks : int;
 		
+		private var topTile : MovieClip;
+		
 		public function Tower(level : int) 
 		{
 			interActive = true;
@@ -53,7 +55,17 @@ package game.mainObjects
 			if (totalBricks >= maxBricks) {
 				totalBricks = maxBricks;
 				//play canon animation then after canon animation a white screen fading away and after that all monsters on screen are dying/dead and next level starts.
-				//parent.dispatchEvent(new Event(GAME_WON));
+				collider = false;
+				topTile.play();
+				addEventListener(Event.ENTER_FRAME, checkDoneAnim);
+			}
+		}
+		
+		private function checkDoneAnim(e:Event):void 
+		{
+			if (topTile.currentFrame == topTile.totalFrames) {
+				removeEventListener(Event.ENTER_FRAME, checkDoneAnim);
+				parent.dispatchEvent(new Event(GAME_WON));
 			}
 		}
 		private function addLayer():void {
@@ -92,6 +104,8 @@ package game.mainObjects
 							tile.y = tiles[i - 1].y - tiles[i - 1].height;
 						}else {
 							tile = new TowerPieceTop();
+							topTile = tile;
+							topTile.stop();
 							tile.y = tiles[i - 1].y - tiles[i - 1].height;
 						}
 						tile.scaleX = 1.5;
