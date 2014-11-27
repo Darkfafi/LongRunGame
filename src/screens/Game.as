@@ -16,6 +16,7 @@ package screens
 	import gameControl.GameController;
 	import flash.utils.setInterval;
 	import flash.utils.clearInterval;
+	import soundTools.SoundManager;
 	/**
 	 * ...
 	 * @author Ramses di Perna
@@ -47,6 +48,8 @@ package screens
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			
+			SoundManager.playMusic(SoundManager.GAME_MUSIC,9999,2000);
 			
 			addEventListener(Event.ENTER_FRAME, update);
 			addEventListener(Tower.GAME_WON, nextLevel);

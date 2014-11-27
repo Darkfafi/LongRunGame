@@ -4,6 +4,7 @@ package game.interactiveObjects
 	import flash.events.Event;
 	import game.mainObjects.Player;
 	import gameControl.HudTextField;
+	import soundTools.SoundManager;
 	/**
 	 * ...
 	 * @author Ramses di Perna
@@ -63,6 +64,7 @@ package game.interactiveObjects
 		
 		protected function upgradePlayer():void 
 		{
+			SoundManager.playSound(SoundManager.UPGRADE_SOUND);
 			//voor elk fornuis anders
 			//bijv : target.attackDmg += 5;
 		}

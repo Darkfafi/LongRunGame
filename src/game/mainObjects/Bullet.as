@@ -10,6 +10,7 @@ package game.mainObjects
 	 */
 	public class Bullet extends MovingGameObject
 	{
+		private var explosion : ExplosionArt;
 		private var currentDropSpeed : Number = 0;
 		private var fallSpeed : Number = 0;
 		private var bulletArt : Sprite = new Sprite();
@@ -28,11 +29,16 @@ package game.mainObjects
 			super.movement();
 			currentDropSpeed += 0.01;
 			
-			fallSpeed += currentDropSpeed;
-			y += fallSpeed;
-			
 			if (y > parent.stage.stageHeight) {
 				removeObject();
+			}
+			if(explosion != null){
+				if (explosion.currentFrame == explosion.totalFrames) {
+					removeObject();
+				}
+			}else {
+				fallSpeed += currentDropSpeed;
+				y += fallSpeed;
 			}
 		}
 		private function drawBullet():void 
@@ -44,13 +50,19 @@ package game.mainObjects
 		{
 			super.onCollision(other);
 			if (other is Monster) {
+				collider = false;
+				removeChild(bulletArt);
 				var monster : Monster = other as Monster;
 				monster.getDamage(bulletDmg);
-				//impact (explosion or something)
-				removeObject();
+				
+				_dir = 0;
+				explosion = new ExplosionArt();
+				if(0.3 + (0.02 * (bulletDmg - 10) < 1.2)){
+					explosion.scaleX = 0.3 + (0.02 * (bulletDmg - 10));
+					explosion.scaleY = explosion.scaleX;
+				}
+				addChild(explosion);
 			}
 		}
-		
 	}
-
 }

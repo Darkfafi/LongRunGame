@@ -28,7 +28,7 @@ package game.monsters
 			
 			hpText.x += barArt.width / 3;
 			hpText.width = barArt.width - barArt.width / 3;
-			hpText.y -= 5;
+			hpText.y -= 4;
 			scaleBar(_maxHp);
 			
 			addChild(backBar);

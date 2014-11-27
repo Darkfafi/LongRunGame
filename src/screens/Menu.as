@@ -4,6 +4,7 @@ package screens
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.ui.Keyboard;
+	import soundTools.SoundManager;
 	/**
 	 * ...
 	 * @author Ramses di Perna
@@ -23,7 +24,7 @@ package screens
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			
+			SoundManager.playMusic(SoundManager.MENU_MUSIC);
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 		}
 		

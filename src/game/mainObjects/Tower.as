@@ -5,6 +5,7 @@ package game.mainObjects
 	import flash.events.Event;
 	import gameControl.GameObject;
 	import gameControl.HudTextField;
+	import soundTools.SoundManager;
 	
 	/**
 	 * ...
@@ -51,6 +52,7 @@ package game.mainObjects
 			}
 			if (totalBricks >= maxBricks) {
 				totalBricks = maxBricks;
+				
 				//play canon animation then after canon animation a white screen fading away and after that all monsters on screen are dying/dead and next level starts.
 				collider = false;
 				topTile.play();
@@ -60,6 +62,9 @@ package game.mainObjects
 		
 		private function checkDoneAnim(e:Event):void 
 		{
+			if (topTile.currentFrame == 40) {
+				SoundManager.playSound(SoundManager.TOWERSHOT_SOUND);
+			}
 			if (topTile.currentFrame == topTile.totalFrames) {
 				removeEventListener(Event.ENTER_FRAME, checkDoneAnim);
 				parent.dispatchEvent(new Event(GAME_WON));

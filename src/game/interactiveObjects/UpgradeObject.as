@@ -4,6 +4,7 @@ package game.interactiveObjects
 	import flash.events.Event;
 	import game.mainObjects.Player;
 	import gameControl.GameObject;
+	import soundTools.SoundManager;
 	
 	/**
 	 * ...
@@ -47,6 +48,7 @@ package game.interactiveObjects
 		{
 			if (upgradeScreen.visible == false) {
 				upgradeScreen.selectUpgradeTarget(InteractingObject as Player);
+				SoundManager.playSound(SoundManager.UPGRADE_OPENSCREEN_SOUND);
 				upgradeScreen.visible = true;
 			}else {
 				upgradeScreen.buy();

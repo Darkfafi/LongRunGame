@@ -22,7 +22,7 @@ package game.monsters
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			hitBox.width = hitBox.width - 10;
+			hitBox.width = hitBox.width - 20;
 		}	
 		
 		override protected function setStats(wave : int):void 

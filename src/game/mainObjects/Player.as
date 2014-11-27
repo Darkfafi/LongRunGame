@@ -8,6 +8,7 @@ package game.mainObjects
 	import game.pickUps.BrickCollectible;
 	import gameControl.GameObject;
 	import gameControl.MovingGameObject;
+	import soundTools.SoundManager;
 	
 	/**
 	 * ...
@@ -80,6 +81,7 @@ package game.mainObjects
 		}
 		public function buildUpTower() :void {
 			switchAnim(TOWER_BUILD_ANIM);
+			//bag sound
 		}
 		override public function update():void 
 		{
@@ -94,6 +96,8 @@ package game.mainObjects
 			}
 			if (animations[TOWER_BUILD_ANIM].currentFrame == animations[TOWER_BUILD_ANIM].totalFrames) {
 				switchAnim(IDLE_ANIM);
+			}else if(animations[TOWER_BUILD_ANIM].currentFrame == 25) {
+				SoundManager.playSound(SoundManager.BUILD_TOWER_SOUND);
 			}
 		}
 		private function keyDown(e:KeyboardEvent):void 

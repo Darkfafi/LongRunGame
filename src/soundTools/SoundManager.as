@@ -13,9 +13,17 @@ package soundTools
 	public class SoundManager
 	{
 		//public static consts with array int in them bijv: public static const GAME_MUSIC : int = 0;
+		public static const MENU_MUSIC : int = 0;
+		public static const GAME_MUSIC : int = 1;
 		
-		private static var soundVolume : int = 0.7;
-		private static var musicVolume : int = 0.5;
+		public static const BUILD_TOWER_SOUND : int = 2;
+		public static const UPGRADE_SOUND : int = 3;
+		public static const UPGRADE_OPENSCREEN_SOUND : int = 4;
+		public static const TOWERSHOT_SOUND : int = 5;
+		
+		
+		private static var soundVolume : Number = 1;
+		private static var musicVolume : Number = 0.5;
 		
 		private static var soundTransform : SoundTransform = new SoundTransform(soundVolume);
 		private static var musicTransform : SoundTransform = new SoundTransform(musicVolume);
@@ -40,6 +48,13 @@ package soundTools
 		public static function loadSounds() : void {
 			
 			// music (all url requests) bijv: allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/PongGame/sounds/Instrument.mp3")); // Menu Music
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/introsound.mp3"));
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/ingamebgm.mp3"));
+			
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/playerbuildingsound.mp3"));
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/upgradesound.mp3"));
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/furnacesound.mp3"));
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/canonshoot.mp3"));
 			
 			//sounds/effects
 			for (var i : int = 0; i < allUrls.length; i++) {
@@ -75,8 +90,8 @@ package soundTools
 		public static function playMusic(soundInt : int, repeat : int = 9999, startInMili : int = 0) :void {
 			var sound : Sound = new Sound();
 			sound = allSounds[soundInt];
-			
-			if(sound != null){
+			if (sound != null) {
+				musicChannel.stop();
 				musicChannel = sound.play(startInMili, repeat, musicTransform);
 			}
 		}
@@ -115,7 +130,7 @@ package soundTools
 		public static function toggleMuteMusic() :Boolean {
 			if (musicTransform.volume == 0) {
 				musicTransform.volume = musicVolume;
-				musicChannel = currentMusic.play(musicPausePos, 999, musicTransform);
+				musicChannel = currentMusic.play(musicPausePos, 9999, musicTransform);
 				return true;
 			}else {
 				musicPausePos = musicChannel.position;
