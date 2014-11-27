@@ -66,7 +66,8 @@ package screens
 			player.destroy();
 			gameRunning = false
 			//addChild(You lost!!!);
-			countDown = setInterval(quitGame, 4000);
+			SoundManager.playMusic(SoundManager.DEFEAT_SOUND, 0);
+			countDown = setInterval(quitGame, 3000);
 		}
 		
 		

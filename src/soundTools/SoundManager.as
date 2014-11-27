@@ -20,10 +20,15 @@ package soundTools
 		public static const UPGRADE_SOUND : int = 3;
 		public static const UPGRADE_OPENSCREEN_SOUND : int = 4;
 		public static const TOWERSHOT_SOUND : int = 5;
+		public static const BAG_SOUND : int = 6;
+		public static const BRICKS_IN_FURNACE_SOUND : int = 7;
+		public static const SHOOT_SOUND : int = 8;
+		public static const HIT_SOUND : int = 9;
+		public static const DEFEAT_SOUND : int = 10;
 		
 		
 		private static var soundVolume : Number = 1;
-		private static var musicVolume : Number = 0.5;
+		private static var musicVolume : Number = 0.3;
 		
 		private static var soundTransform : SoundTransform = new SoundTransform(soundVolume);
 		private static var musicTransform : SoundTransform = new SoundTransform(musicVolume);
@@ -55,6 +60,11 @@ package soundTools
 			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/upgradesound.mp3"));
 			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/furnacesound.mp3"));
 			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/canonshoot.mp3"));
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/brickpickup.mp3"));
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/brickthrowinfurnace.mp3"));
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/shoot.mp3"));
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/monsterhit.mp3"));
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/defeatsound.mp3"));
 			
 			//sounds/effects
 			for (var i : int = 0; i < allUrls.length; i++) {

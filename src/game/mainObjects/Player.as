@@ -81,6 +81,7 @@ package game.mainObjects
 		}
 		public function buildUpTower() :void {
 			switchAnim(TOWER_BUILD_ANIM);
+			SoundManager.playSound(SoundManager.BAG_SOUND);
 			//bag sound
 		}
 		override public function update():void 
@@ -150,7 +151,7 @@ package game.mainObjects
 			bullet.x = x + width / 3 * scaleX;
 			bullet.y = y - height / 3;
 			parent.addChild(bullet);
-			
+			SoundManager.playSound(SoundManager.SHOOT_SOUND);
 			this.x += scaleX * -1;
 		}
 		
@@ -175,6 +176,7 @@ package game.mainObjects
 				if(bricksCarrying < brickCapacity){
 					other.removeObject();
 					bricksCarrying ++;
+					SoundManager.playSound(SoundManager.BAG_SOUND);
 				}
 			}	
 		}

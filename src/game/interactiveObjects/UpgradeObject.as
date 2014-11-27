@@ -46,12 +46,16 @@ package game.interactiveObjects
 		
 		override public function onInteraction(InteractingObject:GameObject):void 
 		{
+			var player : Player = InteractingObject as Player;
 			if (upgradeScreen.visible == false) {
 				upgradeScreen.selectUpgradeTarget(InteractingObject as Player);
-				SoundManager.playSound(SoundManager.UPGRADE_OPENSCREEN_SOUND);
+				SoundManager.playSound(SoundManager.UPGRADE_OPENSCREEN_SOUND,0,150);
 				upgradeScreen.visible = true;
 			}else {
-				upgradeScreen.buy();
+				if (player.bricksCarrying > 0) {	
+					SoundManager.playSound(SoundManager.BRICKS_IN_FURNACE_SOUND);
+					upgradeScreen.buy();
+				}
 			}
 		}
 		override public function onCollisionExit(other:GameObject):void 

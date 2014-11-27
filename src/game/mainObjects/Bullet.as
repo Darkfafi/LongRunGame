@@ -4,6 +4,7 @@ package game.mainObjects
 	import game.monsters.Monster;
 	import gameControl.GameObject;
 	import gameControl.MovingGameObject;
+	import soundTools.SoundManager;
 	/**
 	 * ...
 	 * @author Ramses di Perna
@@ -57,6 +58,7 @@ package game.mainObjects
 				
 				_dir = 0;
 				explosion = new ExplosionArt();
+				SoundManager.playSound(SoundManager.HIT_SOUND);
 				if(0.3 + (0.02 * (bulletDmg - 10) < 1.2)){
 					explosion.scaleX = 0.3 + (0.02 * (bulletDmg - 10));
 					explosion.scaleY = explosion.scaleX;
