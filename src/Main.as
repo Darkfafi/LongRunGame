@@ -6,6 +6,7 @@ package
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import screens.Game;
+	import screens.LoadingScreen;
 	import screens.Menu;
 	import soundTools.SoundManager;
 	
@@ -20,6 +21,8 @@ package
 		
 		private var menu : Menu = new Menu();
 		private var game : Game = new Game();
+		
+		private var loadingScreen : LoadingScreen = new LoadingScreen();
 		
 		public function Main():void 
 		{
@@ -39,8 +42,13 @@ package
 		{
 			if (SoundManager.allSoundsLoaded) {
 				removeEventListener(Event.ENTER_FRAME, checkSoundsLoaded);
+				if (contains(loadingScreen)) {
+					removeChild(loadingScreen);
+				}
 				placeButtons();
 				switchScreen(MENU_SCREEN);
+			}else if (!contains(loadingScreen)) {
+				addChild(loadingScreen);
 			}
 		}
 		
