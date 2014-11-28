@@ -183,7 +183,9 @@ package game.mainObjects
 		override public function destroy():void 
 		{
 			super.destroy();
-			
+			for (var i : int = 0; i < animations.length; i++) {
+				animations[i].stop();
+			}
 			stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			stage.removeEventListener(KeyboardEvent.KEY_UP, keyUp);
 		}

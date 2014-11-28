@@ -129,6 +129,7 @@ package game.monsters
 			collider = false;
 			_dir = 0;
 			attackDmg = 0;
+			removeChild(hpBar);
 			switchAnim(DEATH_ANIM);
 		}
 		private function death():void 

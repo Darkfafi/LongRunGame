@@ -1,5 +1,6 @@
 package screens 
 {
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
@@ -30,6 +31,8 @@ package screens
 		private var countDown : int;
 		
 		//stage objects
+		
+		private var endscreen : Sprite = new EndScreen();
 		private var ui : UI;
 		public var gameController : GameController;
 		private var gameRunning : Boolean = true;
@@ -65,7 +68,8 @@ package screens
 		{
 			player.destroy();
 			gameRunning = false
-			//addChild(You lost!!!);
+			stage.addChild(endscreen);
+			endscreen.alpha = 0.8;
 			SoundManager.playMusic(SoundManager.DEFEAT_SOUND, 0);
 			countDown = setInterval(quitGame, 3000);
 		}
@@ -76,6 +80,7 @@ package screens
 			clearInterval(countDown);
 			var cam : Rectangle = new Rectangle(0, 0, stage.stageWidth, stage.stageHeight);
 			this.root.scrollRect = cam;
+			stage.removeChild(endscreen);
 			dispatchEvent(new Event(BACK_TO_MENU, true));
 		}
 		
@@ -168,6 +173,14 @@ package screens
 			removeEventListener(Tower.GAME_WON, nextLevel);
 			removeEventListener(Tower.GAME_LOST, quitGame);
 			super.destroy();
+		}
+		
+		public function togglePause() :void {
+			if (gameRunning) {
+				gameRunning = false;
+			}else {
+				gameRunning = true;
+			}
 		}
 	}
 
