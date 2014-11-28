@@ -27,7 +27,7 @@ package buttons
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			hitbox.graphics.beginFill(0x000000, 1);
+			hitbox.graphics.beginFill(0x000000, 0);
 			hitbox.graphics.drawRect(0, 0, 35, 40);
 			hitbox.graphics.endFill();
 			

@@ -1,5 +1,7 @@
 package screens 
 {
+	import buttons.ToggleButton;
+	import events.HudEvent;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -31,9 +33,9 @@ package screens
 		private var countDown : int;
 		
 		//stage objects
-		
 		private var endscreen : Sprite = new EndScreen();
 		private var explosionAnim : MovieClip;
+		
 		private var ui : UI;
 		public var gameController : GameController;
 		private var gameRunning : Boolean = true;
@@ -58,6 +60,7 @@ package screens
 			addEventListener(Event.ENTER_FRAME, update);
 			addEventListener(Tower.GAME_WON, startNextLevelAnim);
 			addEventListener(Tower.GAME_LOST, endGame);
+			
 			gameController = new GameController(this);
 			waveSystem = new WaveSystem(this);
 			ui = new UI(gameController);
@@ -189,14 +192,5 @@ package screens
 			removeEventListener(Tower.GAME_LOST, quitGame);
 			super.destroy();
 		}
-		
-		public function togglePause() :void {
-			if (gameRunning) {
-				gameRunning = false;
-			}else {
-				gameRunning = true;
-			}
-		}
 	}
-
 }

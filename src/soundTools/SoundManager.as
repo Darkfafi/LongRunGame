@@ -142,7 +142,9 @@ package soundTools
 		public static function toggleMuteMusic() :Boolean {
 			if (musicTransform.volume == 0) {
 				musicTransform.volume = musicVolume;
-				musicChannel = currentMusic.play(musicPausePos, 9999, musicTransform);
+				if(currentMusic != null){
+					musicChannel = currentMusic.play(musicPausePos, 9999, musicTransform);
+				}
 				return true;
 			}else {
 				musicPausePos = musicChannel.position;

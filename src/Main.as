@@ -48,10 +48,18 @@ package
 		{
 			var soundButton : ToggleButton = new EffectsSoundButton()
 			var musicButton : ToggleButton = new MusicSoundButton();
-			soundButton.x = 200;
-			soundButton.y = 200;
-			//stage.addChild(soundButton);
-			//stage.addChild(musicButton);
+			soundButton.scaleX = 0.5;
+			soundButton.scaleY = soundButton.scaleX;
+			musicButton.scaleX = soundButton.scaleY;
+			musicButton.scaleY = soundButton.scaleY;
+			
+			soundButton.x =	25;
+			soundButton.y = 85;
+			
+			musicButton.x = soundButton.x;
+			musicButton.y = soundButton.y + 50;
+			stage.addChild(soundButton);
+			stage.addChild(musicButton);
 		}
 		
 		private function switchScreen(screen : String) :void {

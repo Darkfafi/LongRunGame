@@ -14,9 +14,9 @@ package buttons
 		override protected function toggleEvent(e:MouseEvent):void 
 		{
 			if (SoundManager.toggleMuteSound()) {
-				buttonArt.gotoAndStop(2);
-			}else {
 				buttonArt.gotoAndStop(1);
+			}else {
+				buttonArt.gotoAndStop(2);
 			}
 		}
 		

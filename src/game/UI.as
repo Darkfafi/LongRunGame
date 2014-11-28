@@ -94,7 +94,7 @@ package game
 			uibg.y -= uibg.height / 2;
 			uibg.scaleX = 1.05;
 			uibg.alpha = 0.8;
-			stage.addChild(uibg);
+			stage.addChildAt(uibg,1);
 			
 			levelText.x = stage.stageWidth / 2 - 10;
 			waveText.x = levelText.x;
