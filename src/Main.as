@@ -1,5 +1,8 @@
 package 
 {
+	import buttons.EffectsSoundButton;
+	import buttons.MusicSoundButton;
+	import buttons.ToggleButton;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import screens.Game;
@@ -36,8 +39,19 @@ package
 		{
 			if (SoundManager.allSoundsLoaded) {
 				removeEventListener(Event.ENTER_FRAME, checkSoundsLoaded);
+				placeButtons();
 				switchScreen(MENU_SCREEN);
 			}
+		}
+		
+		private function placeButtons():void 
+		{
+			var soundButton : ToggleButton = new EffectsSoundButton()
+			var musicButton : ToggleButton = new MusicSoundButton();
+			soundButton.x = 200;
+			soundButton.y = 200;
+			//stage.addChild(soundButton);
+			//stage.addChild(musicButton);
 		}
 		
 		private function switchScreen(screen : String) :void {

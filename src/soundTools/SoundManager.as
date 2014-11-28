@@ -103,6 +103,7 @@ package soundTools
 			sound = allSounds[soundInt];
 			if (sound != null) {
 				musicChannel.stop();
+				currentMusic = sound;
 				musicChannel = sound.play(startInMili, repeat, musicTransform);
 			}
 		}

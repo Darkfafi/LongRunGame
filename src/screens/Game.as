@@ -33,6 +33,7 @@ package screens
 		//stage objects
 		
 		private var endscreen : Sprite = new EndScreen();
+		private var explosionAnim : MovieClip;
 		private var ui : UI;
 		public var gameController : GameController;
 		private var gameRunning : Boolean = true;
@@ -55,7 +56,7 @@ package screens
 			SoundManager.playMusic(SoundManager.GAME_MUSIC,9999,2000);
 			
 			addEventListener(Event.ENTER_FRAME, update);
-			addEventListener(Tower.GAME_WON, nextLevel);
+			addEventListener(Tower.GAME_WON, startNextLevelAnim);
 			addEventListener(Tower.GAME_LOST, endGame);
 			gameController = new GameController(this);
 			waveSystem = new WaveSystem(this);
@@ -93,9 +94,13 @@ package screens
 			addChild(ui);
 			waveSystem.setWave(1);
 		}
-		
-		private function nextLevel(e : Event) :void {
-			//next level word getriggert door gotoNextLevel functie die de conceptart laat zien van level won. alle monsters delete en de dontSpawn aanzet. En een timer zet dat na zo veel sec next level getriggert word
+		private function startNextLevelAnim(e:Event):void 
+		{
+			explosionAnim  = new ExplosionFlare();
+			addChild(explosionAnim);
+			explosionAnim.x = backGround.width / 2;
+		}
+		private function nextLevel() :void {
 			_level ++;
 			ui.updateLevelText();
 			waveSystem.dontSpawn();
@@ -104,6 +109,7 @@ package screens
 			
 			buildTower();
 			addChild(player);
+			addChild(explosionAnim);
 		}
 		
 		private function deleteAllMonsters():void 
@@ -158,6 +164,15 @@ package screens
 			if (gameRunning) {
 				gameController.update();
 				ui.update();
+			}
+			if(explosionAnim != null){
+				if (explosionAnim.currentFrame == explosionAnim.totalFrames) {
+					explosionAnim.gotoAndStop(1);
+					removeChild(explosionAnim);
+					explosionAnim = null;
+				}else if (explosionAnim.currentFrame == 30) {
+					nextLevel();
+				}
 			}
 		}
 		

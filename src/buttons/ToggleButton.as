@@ -1,29 +1,33 @@
-package soundTools
+package buttons
 {
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import media.SoundManager;
 	/**
 	 * ...
 	 * @author Ramses di Perna
 	 */
-	public class SoundButton extends Sprite
+	public class ToggleButton extends Sprite
 	{
 		private var hitbox : Sprite = new Sprite();
-		protected var muteArt : Sprite = new Sprite(); 
-		protected var unMuteArt : Sprite = new Sprite(); 
+		protected var buttonArt : MovieClip = new MovieClip();
 		
-		public function SoundButton() 
+		public function ToggleButton() 
 		{
-			addEventListener(MouseEvent.CLICK, muteSound);
+			addEventListener(MouseEvent.CLICK, toggleEvent);
 			addEventListener(Event.ADDED_TO_STAGE,init)
+		}
+		
+		protected function toggleEvent(e:MouseEvent):void 
+		{
+			
 		}
 		
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			hitbox.graphics.beginFill(0x000000, 0);
+			hitbox.graphics.beginFill(0x000000, 1);
 			hitbox.graphics.drawRect(0, 0, 35, 40);
 			hitbox.graphics.endFill();
 			
@@ -33,16 +37,9 @@ package soundTools
 		
 		private function drawButton():void 
 		{
-			addChild(muteArt);
-			addChild(unMuteArt);
-			muteArt.visible = false;
+			addChild(buttonArt);
+			buttonArt.gotoAndStop(1);
 		}
-		
-		protected function muteSound(e:MouseEvent):void 
-		{
-			//function what to mute
-		}
-		
 	}
 
 }
