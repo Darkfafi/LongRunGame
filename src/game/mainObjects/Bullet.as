@@ -52,7 +52,9 @@ package game.mainObjects
 			super.onCollision(other);
 			if (other is Monster) {
 				collider = false;
-				removeChild(bulletArt);
+				if(contains(bulletArt)){
+					removeChild(bulletArt);
+				}
 				var monster : Monster = other as Monster;
 				monster.getDamage(bulletDmg);
 				
