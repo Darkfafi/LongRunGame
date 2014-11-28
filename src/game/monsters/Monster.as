@@ -7,6 +7,7 @@ package game.monsters
 	import gameControl.GameObject;
 	import gameControl.MovingGameObject;
 	import game.monsters.HpBar;
+	import soundTools.SoundManager;
 	/**
 	 * ...
 	 * @author Ramses di Perna
@@ -115,7 +116,8 @@ package game.monsters
 			if (animations[ATTACK_ANIM].currentFrame == animations[ATTACK_ANIM].totalFrames) {
 				attacking = false;
 			}else if (animations[ATTACK_ANIM].currentFrame == attackHitFrame) {
-				if(curAttackingTower != null){
+				if (curAttackingTower != null) {
+					SoundManager.playSound(SoundManager.MONSTER_HIT_TOWER_SOUND);
 					curAttackingTower.damageTower(attackDmg);
 				}
 			}
@@ -130,6 +132,7 @@ package game.monsters
 			_dir = 0;
 			attackDmg = 0;
 			removeChild(hpBar);
+			SoundManager.playSound(SoundManager.MONSTER_DEATH_SOUND,0,2500);
 			switchAnim(DEATH_ANIM);
 		}
 		private function death():void 

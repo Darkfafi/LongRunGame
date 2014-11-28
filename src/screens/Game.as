@@ -101,7 +101,8 @@ package screens
 		{
 			explosionAnim  = new ExplosionFlare();
 			addChild(explosionAnim);
-			explosionAnim.x = backGround.width / 2;
+			SoundManager.playSound(SoundManager.TOWER_NUKE_SOUND);
+			explosionAnim.x = backGround.width / 3 + 15;
 		}
 		private function nextLevel() :void {
 			_level ++;

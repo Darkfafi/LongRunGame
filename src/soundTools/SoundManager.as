@@ -25,6 +25,10 @@ package soundTools
 		public static const SHOOT_SOUND : int = 8;
 		public static const HIT_SOUND : int = 9;
 		public static const DEFEAT_SOUND : int = 10;
+		public static const TOWER_NUKE_SOUND : int = 11;
+		public static const MONSTER_HIT_TOWER_SOUND : int = 12;
+		public static const TOWER_BREAK_SOUND : int = 13;
+		public static const MONSTER_DEATH_SOUND : int = 14;
 		
 		
 		private static var soundVolume : Number = 1;
@@ -66,6 +70,10 @@ package soundTools
 			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/shoot.mp3"));
 			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/monsterhit.mp3"));
 			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/defeatsound.mp3"));
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/explosion2.mp3"));
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/monsterHitTower.mp3"));
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/towerbreak.mp3"));
+			allUrls.push(new URLRequest("http://15826.hosts.ma-cloud.nl/Leerjaar2/Projecten/LongRunSounds/deadMonster.mp3"));
 			
 			//sounds/effects
 			for (var i : int = 0; i < allUrls.length; i++) {

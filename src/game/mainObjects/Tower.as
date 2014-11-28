@@ -75,6 +75,7 @@ package game.mainObjects
 		}
 		public function damageTower(dmg : int) :void {
 			totalBricks -= dmg;
+			SoundManager.playSound(SoundManager.TOWER_BREAK_SOUND);
 			if (totalBricks <= 0) {
 				totalBricks = 0
 				parent.dispatchEvent(new Event(GAME_LOST));
