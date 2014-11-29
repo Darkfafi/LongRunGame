@@ -22,6 +22,8 @@ package game
 		private var _wave : int;
 		private var canSpawn : Boolean = true;
 		
+		private var upgradeAmount : int = 1;
+		
 		public function WaveSystem(_world : DisplayObjectContainer) 
 		{
 			world = _world;
@@ -58,7 +60,6 @@ package game
 		{
 			var enemiesLeft : int = _game.gameController.lisOfObjectType(Monster).length;
 			if(e.target is Monster){
-				//trace(enemiesLeft);
 				if (canSpawn && enemiesLeft == 0) {
 					startNextWave();
 				}
@@ -84,11 +85,12 @@ package game
 				var pos : int = Math.floor(Math.random() * 2);
 				if(_wave%5 == 0){
 					monster = new GolemDog(_wave, pos == 1 ? 1 : -1);
+					upgradeAmount *= 1.5;
 				}else {
 					if (i <= (amount / 3) * 2) {
-						monster = new Golem(_wave, pos == 1 ? 1 : -1);
+						monster = new Golem(_wave * upgradeAmount, pos == 1 ? 1 : -1);
 					}else {
-						monster = new GolemDog(_wave, pos == 1 ? 1 : -1);
+						monster = new GolemDog(_wave * upgradeAmount, pos == 1 ? 1 : -1);
 					}
 				}
 				world.addChildAt(monster,4);

@@ -81,7 +81,7 @@ package game.mainObjects
 		}
 		public function buildUpTower() :void {
 			switchAnim(TOWER_BUILD_ANIM);
-			SoundManager.playSound(SoundManager.BAG_SOUND);
+			SoundManager.playToEnd(SoundManager.BAG_SOUND);
 			//bag sound
 		}
 		override public function update():void 

@@ -81,8 +81,13 @@ package game.monsters
 		
 		public function getDamage(dmg : int) :void {
 			health -= dmg;
-			if(!attacking && dmg != int.MAX_VALUE){
-				this.x += scaleX * -1 * (dmg * 0.1);
+			trace(dmg * 0.1);
+			if (!attacking && dmg != int.MAX_VALUE) {
+				if(dmg * 0.1 < 3){
+					this.x += (scaleX * -1) * (dmg * 0.1);
+				}else {
+					this.x += (scaleX * -1) * 3;
+				}
 			}
 			if (health <= 0) {
 				health = 0;

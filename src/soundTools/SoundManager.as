@@ -31,7 +31,7 @@ package soundTools
 		public static const MONSTER_DEATH_SOUND : int = 14;
 		
 		
-		private static var soundVolume : Number = 1;
+		private static var soundVolume : Number = 0.9;
 		private static var musicVolume : Number = 0.3;
 		
 		private static var soundTransform : SoundTransform = new SoundTransform(soundVolume);
